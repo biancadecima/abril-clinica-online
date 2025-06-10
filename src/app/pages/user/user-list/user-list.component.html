@@ -1,0 +1,33 @@
+<div class="container">
+    <h1 class = "titulo">Lista de Usuarios</h1>
+    <!--<button class = "button" (click)="exportAllUsers()">Exportar los Usuarios</button>-->
+
+    <div class="mb-4">
+      <div class="checkbox-container">
+          <div class="checkbox-group">
+            <label>
+                <input type="radio" name="role" value="Paciente" formControlName="role" (change)="filterUsers($event)"/> Paciente
+            </label>
+            <label> 
+                <input type="radio" name="role" value="Especialista" formControlName="role" (change)="filterUsers($event)"/> Especialista
+            </label>
+            <label>
+              <input type="radio" name="role" value="Admin" formControlName="role" (change)="filterUsers($event)"/> Admin
+            </label>
+          </div>
+        </div>
+    </div>
+
+    <div class="tabla">
+      <div class="usuarios-container">
+        <div class="columnas col-md-3 mb-4 text-center"
+          *ngFor="let user of filteredUsers" (click)="selectUser(user)">
+          <button class="favbutton" [ngClass]="{ 'selected': user === selectedUser }"
+            (click)="selectUser(user)"><!--[appHighlightUnverified]="getIsVerifiedEmail(user)"-->
+            <img [src]="user.photo" alt="Foto del usuario" class="img-fluid rounded-circle usuario-img"/>
+            <p class="usuario-email">{{ user.email }}</p>
+          </button>
+        </div>
+      </div>
+    </div>
+</div>

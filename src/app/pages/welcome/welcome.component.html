@@ -1,0 +1,14 @@
+<div class="home-wrap">
+    <div @fadeAnimation>
+      <div class="home-html">
+        <h2 class="titulo">BIENVENIDO</h2>
+        <h3 class = "subtitulo">Atención de lunes a domingo</h3>
+        <ng-container *ngIf="auxObservable$ | async as user; else mostrarLogin">
+          </ng-container>
+          <ng-template #mostrarLogin>
+            <button type = "submit" class="button" (click)="logIn()">Iniciar Sesion</button>
+            <button type = "submit" class="button" (click)="signUp()">Registrarse</button>
+          </ng-template>
+      </div>
+    </div>
+  </div>

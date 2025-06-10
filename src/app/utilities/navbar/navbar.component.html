@@ -1,0 +1,37 @@
+<div class="navbar">
+  <nav class="navbar navbar-expand-lg bg-transparent" style="position: fixed; width: 90%; z-index: 1000;">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+
+     
+      <div class="navbar-left">
+        <a class="navbar-brand" href="/">
+          <img src="assets/logo.png" class="logo-img" alt="Logo">
+        </a>
+      </div>
+     
+      <div class="navbar-center">
+        <a class="nav-link active text-white mx-3" routerLink="home" routerLinkActive="active-route">Inicio</a>
+        <a *ngIf="role == 'Paciente' || role == 'Especialista'" class="nav-link active text-white mx-3" routerLink="misturnos" routerLinkActive="active-route">Mis Turnos</a>
+        <a *ngIf="role == 'Admin'" class="nav-link active text-white mx-3" routerLink="turnos" routerLinkActive="active-route">Turnos</a>
+        <a *ngIf="role == 'Admin' || role == 'Paciente'" class="nav-link active text-white mx-3" routerLink="solicitarturno" routerLinkActive="active-route">Solicitar Turno</a>
+        <a *ngIf="role == 'Admin'" class="nav-link active text-white mx-3" routerLink="informes" routerLinkActive="active-route">Informes</a>
+      </div>
+
+    
+      <div class="navbar-right d-flex align-items-center">
+        <ng-container *ngIf="userData$ | async as user; else showLogIn">
+          <a class="botonPerfil nav-link active text-white" routerLink="perfil" routerLinkActive="active-route">Mi Perfil</a>
+          <button class="botonCerrarSesion" (click)="logOut()">Cerrar Sesión</button>
+        </ng-container>
+
+        <ng-template #showLogIn>
+          <a class="nav-link active text-white me-2" routerLink="registrarse" routerLinkActive="active-route">Registrarse</a>
+          <a class="nav-link active text-white me-2" routerLink="ingresar" routerLinkActive="active-route">Iniciar Sesión</a>
+        </ng-template>
+
+        <a *ngIf="role == 'Admin'" class="botonUsuarios nav-link active text-white me-3" routerLink="usuarios" routerLinkActive="active-route">Usuarios</a>
+        <a *ngIf="role == 'Especialista'" class="botonUsuarios nav-link active text-white me-3" routerLink="pacientes" routerLinkActive="active-route">Pacientes</a>
+      </div>
+    </div>
+  </nav>
+</div>

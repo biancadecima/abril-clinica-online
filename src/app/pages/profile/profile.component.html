@@ -1,0 +1,39 @@
+<div class="perfil-wrap">
+    <div class="perfil-html" [class]="this.userData.role">
+      <div class="tarjeta-presentacion">
+        <div class="container">
+            <div class = "containertitulo">
+              <h4 class="titulo-contenedor">Mi Perfil</h4>
+              <img src="assets/logo.png" class="logo-derecha">
+            </div>
+
+            <div class = "containerdatos">
+              <div class="foto-usuario">
+                <ng-container *ngIf = "userData.role == 'Paciente'">
+                    <img src="{{userData.photo}}" alt="Foto de perfil" style = "width: 100px; height: 120px;">
+                    <img src="{{userData.photo2}}" alt="Foto de perfil" style = "width: 100px; height: 120px">
+                </ng-container>
+
+                <ng-container *ngIf = "userData.role == 'Especialista' || userData.role == 'Admin'">
+                  <img src="{{userData.photo}}" alt="Foto de perfil" style = "width: 200px; height: 220px">
+                </ng-container>
+                           
+              </div>
+              <div class="datos-usuario">
+                <h4 class="nombre">{{userData.name}} {{userData.surname}}</h4>
+                <p><strong>Edad:</strong> {{userData.age}}</p>
+                <p><strong>DNI:</strong> {{userData.dni}}</p>
+                <p><strong>Email:</strong> {{userData.email}}</p>
+
+                <p *ngIf = "userData.role == 'Paciente'">
+                  <strong>Obra Social:</strong> {{userData.insurance}}
+                </p>
+
+                <p *ngIf = "userData.role == 'Especialista'">
+                  <strong>Especialidades:</strong> {{userData.specialities}}
+                </p>
+              </div>               
+            </div>
+        </div>
+    </div>
+</div>     

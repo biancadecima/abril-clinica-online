@@ -1,0 +1,328 @@
+<div *ngIf="!isRoleSelected" class="overlay">
+    <div class="role-selection">
+      <button (click)="selectRole('Paciente')" class="role-button">
+        <div class = "imagen" style="height: 100px; width: 100px">
+          <img src="/assets/patient.png" style="width: 85%; height: 85%;" alt="Paciente" />
+        </div>
+        <span>Paciente</span>
+      </button>
+
+      <button (click)="selectRole('Especialista')" class="role-button">
+        <div class = "imagen" style="height: 100px; width: 100px">
+          <img src="/assets/doctor.png" style="width: 85%; height: 100%;" alt="Especialista" />
+        </div>
+        <span>Especialista</span>
+      </button>
+
+      <button *ngIf="userData?.role == 'Admin'" (click)="selectRole('Admin')" class="role-button">
+        <div class = "imagen" style="height: 100px; width: 100px">
+          <img src="/assets/admin.png" style="width: 85%; height: 85%;" alt="Admin" />
+        </div>
+        <span>Admin</span>
+      </button>
+    </div>
+  </div>
+  
+  <div *ngIf="isRoleSelected" class="register-wrap">
+      <main>
+        <div class="registro">
+          <div class="text-center">
+            <h2>Registro</h2>
+          </div>
+          <!-- Pestañas de Navegación -->
+          <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" [class.active]="selectedRole === 'Paciente'" id="tab-paciente"
+                data-bs-toggle="pill" href="#pills-paciente" role="tab" aria-controls="pills-paciente"
+                aria-selected="true" (click)="onTabChange('Paciente')">Paciente</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" [class.active]="selectedRole === 'Especialista'" id="tab-especialista"
+                data-bs-toggle="pill" href="#pills-especialista" role="tab" aria-controls="pills-especialista"
+                aria-selected="false" (click)="onTabChange('Especialista')">Especialista</a>
+            </li>
+            <ng-container *ngIf="userData?.role === 'Admin'">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" [class.active]="selectedRole == 'Admin'" id="tab-admin" data-bs-toggle="pill"
+                  href="#pills-admin" role="tab" aria-controls="pills-admin" aria-selected="false"
+                  (click)="onTabChange('Admin')">Admin</a>
+              </li>
+            </ng-container>
+          </ul>
+    
+          <!-- Contenido de las pestañas -->
+          <div class="tab-content">
+            
+            <!-- Formulario de Paciente -->
+            <div class="tab-pane fade show active"  [class.show]="selectedRole === 'Paciente'"
+            [class.active]="selectedRole === 'Paciente'"id="pills-paciente" role="tabpanel" aria-labelledby="tab-paciente">
+              <form [formGroup]="formPatient" class="form" (ngSubmit)="submitForm()">
+                <div class="row g-3">
+                  <div class="col-sm-6 columna-alta">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name-patient" formControlName="name" placeholder="Ingrese nombre">
+                    <ng-container *ngIf="name?.errors">
+                      <small *ngIf="name?.hasError('pattern')" class="text-danger">Solo debe contener letras</small>
+                      <small *ngIf="submitted && name?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </ng-container>
+                  </div>
+    
+                  <div class="col-sm-6 columna-alta">
+                    <label for="surname" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="surname-patient" formControlName="surname" placeholder="Ingrese apellido">
+                    <ng-container *ngIf="surname?.errors">
+                      <small *ngIf="surname?.hasError('pattern')" class="text-danger">Solo debe contener letras</small>
+                      <small *ngIf="submitted && surname?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </ng-container>
+                  </div>
+    
+                  <div class="col-sm-6 columna-alta">
+                    <label for="age" class="form-label">Edad</label>
+                    <input type="number" class="form-control" id="age-patient" formControlName="age" placeholder="Ingrese edad" min="0" max="99">
+                    <ng-container *ngIf="age?.errors">
+                      <small *ngIf="age?.hasError('min')" class="text-danger">Debe ser 0 o mas</small>
+                      <small *ngIf="age?.hasError('max')" class="text-danger">Debe ser menor de 99 años</small>
+                      <small *ngIf="submitted && age?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </ng-container>
+                  </div>
+    
+                  <div class="col-sm-6 columna-alta">
+                    <label for="dni" class="form-label">DNI</label>
+                    <input type="text" class="form-control" id="dni-patient" formControlName="dni" name="dni" placeholder="Ingrese su DNI">
+                    <ng-container *ngIf="dni?.errors">
+                      <small *ngIf="dni?.hasError('pattern')" class="text-danger">Solo debe contener números</small>
+                      <small *ngIf="dni?.hasError('maxlength')" class="text-danger">Debe tener 8 números</small>
+                      <small *ngIf="dni?.hasError('minlength')" class="text-danger">Debe tener 8 números</small>
+                      <small *ngIf="submitted && dni?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </ng-container>
+                  </div>
+    
+                  <!--<div class="col-sm-6 columna-alta">
+                    <label for="insurance" class="form-label">Obra Social</label>
+                    <input type="text" class="form-control" id="insurance" formControlName="insurance" placeholder="Ingrese su obra social">
+                    <small *ngIf="submitted && insurance?.hasError('required')" class="text-danger">El campo es requerido</small>
+                  </div>-->
+                  <div class="col-sm-6 columna-alta">
+                    <label for="insurance" class="form-label">Obra Social</label>
+                    <select id="insurance" class="form-control" formControlName="insurance" required>
+                      <option value="" disabled selected>Seleccione una opción</option>
+                      <option value="OSDE">OSDE</option>
+                      <option value="SWISS MEDICAL">SWISS MEDICAL</option>
+                      <option value="OMINT">OMINT</option>
+                      <option value="OSUTHGRA">OSUTHGRA</option>
+                    </select>
+                    <small *ngIf="formPatient.get('insurance')?.touched && formPatient.get('insurance')?.invalid" class="text-danger">El campo es requerido.</small>
+                  </div>
+
+  
+                  <div class="col-sm-6 columna-alta">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email-patient" formControlName="email" placeholder="Ingrese su email">
+                    <small *ngIf="submitted && email?.hasError('required')" class="text-danger">El campo es requerido</small>
+                  </div>
+    
+                  <div class="col-sm-6 columna-alta">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password-patient" formControlName="password" placeholder="***********">
+                    <small *ngIf="submitted && password?.hasError('required')" class="text-danger">El campo es requerido</small>
+                  </div>
+                </div>
+                
+                <div class="col-sm-6 columna-altafotos">
+                  <div class="mb-1">
+                      <label for="photo" style=" padding: 5px;">Subir fotos de perfil:</label>
+                      <input type="file" id="photo-patient" (change)="saveFirstPhoto($event)" accept=".jpg, .jpeg, .png">
+                      <small *ngIf="submitted && !selectedFileOne" class="text-danger" style="padding: 48px;">El campo es requerido</small>
+                  </div>
+                </div>
+  
+                <div class="col-sm-6 columna-altafotos2" style="height: 50px;">
+                  <div class="mb-3">
+                      <input type="file" id="photo2" (change)="saveSecondPhoto($event)" accept=".jpg, .jpeg, .png">
+                      <small *ngIf="submitted && !selectedFileTwo" class="text-danger" style="padding: 48px;">El campo es requerido</small>
+                  </div>
+                </div>
+  
+                  <re-captcha (resolved)="runRecaptcha($event)" siteKey="6LeW5_gqAAAAABzMro4QewS2O1aDiaif2lH_HfzL"></re-captcha>
+    
+                <p class="error-mensaje" style="height: 15px;">{{msjError}}</p>
+                <hr class="my-2">
+   
+                <button class="boton w-100 btn btn-lg" type="submit">Registrar</button>
+              </form>
+            </div>
+    
+            <!-- Formulario de Especialista -->
+            <div class="tab-pane fade"  [class.show]="selectedRole === 'Especialista'"
+            [class.active]="selectedRole === 'Especialista'" id="pills-especialista" role="tabpanel" aria-labelledby="tab-especialista">
+              <form [formGroup]="formSpecialist" class="form" (ngSubmit)="submitForm()">
+                <div class="row g-3">
+                  <div class="col-sm-6 columna-alta">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name-specialist" formControlName="name" placeholder="Ingrese nombre">
+                    <ng-container *ngIf="name?.errors">
+                      <small *ngIf="name?.hasError('pattern')" class="text-danger">Solo debe contener letras</small>
+                      <small *ngIf="submitted && name?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </ng-container>
+                  </div>
+    
+                  <div class="col-sm-6 columna-alta">
+                    <label for="surname" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="surname-specialist" formControlName="surname" placeholder="Ingrese apellido">
+                    <ng-container *ngIf="surname?.errors">
+                      <small *ngIf="surname?.hasError('pattern')" class="text-danger">Solo debe contener letras</small>
+                      <small *ngIf="submitted && surname?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </ng-container>
+                  </div>
+  
+                  <div class="col-sm-6 columna-alta">
+                    <label for="age" class="form-label">Edad</label>
+                    <input type="number" class="form-control" id="age-specialist" formControlName="age" placeholder="Ingrese edad" min="18" max="99">
+                    <ng-container *ngIf="age?.errors">
+                      <small *ngIf="age?.hasError('min')" class="text-danger">Debe ser mayor de edad</small>
+                      <small *ngIf="age?.hasError('max')" class="text-danger">Debe ser menor de 99 años</small>
+                      <small *ngIf="submitted && age?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </ng-container>
+                  </div>
+    
+                  <div class="col-sm-6 columna-alta">
+                    <label for="dni" class="form-label">DNI</label>
+                    <input type="text" class="form-control" id="dni-specialist" formControlName="dni" name="dni" placeholder="Ingrese su DNI">
+                    <ng-container *ngIf="dni?.errors">
+                      <small *ngIf="dni?.hasError('pattern')" class="text-danger">Solo debe contener números</small>
+                      <small *ngIf="dni?.hasError('maxlength')" class="text-danger">Debe tener 8 números</small>
+                      <small *ngIf="dni?.hasError('minlength')" class="text-danger">Debe tener 8 números</small>
+                      <small *ngIf="submitted && dni?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </ng-container>
+                  </div>
+  
+                  <div class="col-sm-6 columna-alta">
+                    
+                    <div class = "Especialidades" style="max-height: 120px;"> <!--TODO class especialidades ?-->
+                      <div class="scrollable-container">
+                        <label>Especialidades:</label>
+                        <div *ngFor="let speciality of specialities">
+                          <input type="checkbox" [value]="speciality" (change)="onSpecialityChange($event)">{{ speciality }}
+                        </div>
+                      </div>
+                        <ng-container *ngIf="formSpecialist.get('specialities')?.errors?.['required'] && submitted">
+                          <small class="text-danger">Debe seleccionar al menos una especialidad.</small>
+                        </ng-container>
+                    </div>
+                  </div>
+  
+                  <div class="col-sm-6 columna-alta">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email-specialist" formControlName="email" placeholder="Ingrese su email">
+                    <small *ngIf="submitted && email?.hasError('required')" class="text-danger">El campo es requerido</small>
+                  </div>
+  
+                  <div class="col-sm-6 columna-alta nueva-especialidad" style="height: 20px;">
+                    <input type="text" #newSpecialityInput placeholder="Agregar nueva especialidad">
+                    <button type="button" class = "botonAgregar" (click)="addSpeciality(newSpecialityInput.value); newSpecialityInput.value = ''">Agregar</button>
+                  </div>
+  
+                  <div class="col-sm-6 columna-alta">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="password-specialist" formControlName="password" placeholder="***********">
+                    <small *ngIf="submitted && password?.hasError('required')" class="text-danger">El campo es requerido</small>
+                  </div>
+  
+                  <div class="col-sm-6" style="height: 88px">
+                    <div class="mb-1">
+                        <label for="photo" style=" padding: 5px;">Subir foto de Perfil:</label>
+                        <input type="file" id="photo-specialist" (change)="saveFirstPhoto($event)" accept=".jpg, .jpeg, .png">
+                        <small *ngIf="submitted && !selectedFileOne" class="text-danger" style="padding: 48px;">El campo es requerido</small>
+                    </div>
+                  </div>
+                </div>
+  
+                  <re-captcha (resolved)="runRecaptcha($event)" siteKey="6LeW5_gqAAAAABzMro4QewS2O1aDiaif2lH_HfzL"></re-captcha>
+  
+                <p class="error-mensaje" style="height: 40px;">{{msjError}}</p>
+    
+                <hr class="my-2">
+  
+                <button class="boton w-100 btn btn-lg" type="submit">Registrar</button>
+              </form>
+            </div>
+  
+            <ng-container *ngIf="userData?.role == 'Admin'">
+              <div class="tab-pane fade show active" [class.show]="selectedRole == 'Admin'"
+              [class.active]="selectedRole == 'Admin'" id="pills-admin" role="tabpanel" aria-labelledby="tab-admin">
+  
+                <form [formGroup]="formAdmin" class="form" (ngSubmit)="submitForm()">
+                  <div class="row g-3">
+                    <div class="col-sm-6 columna-alta">
+                      <label for="name" class="form-label">Nombre</label>
+                      <input type="text" class="form-control" id="name" formControlName="name" placeholder="Ingrese nombre">
+                      <ng-container *ngIf="name?.errors">
+                        <small *ngIf="name?.hasError('pattern')" class="text-danger">Solo debe contener letras</small>
+                        <small *ngIf="submitted && name?.hasError('required')" class="text-danger">El campo es requerido</small>
+                      </ng-container>
+                    </div>
+      
+                    <div class="col-sm-6 columna-alta">
+                      <label for="surname" class="form-label">Apellido</label>
+                      <input type="text" class="form-control" id="surname" formControlName="surname" placeholder="Ingrese apellido">
+                      <ng-container *ngIf="surname?.errors">
+                        <small *ngIf="surname?.hasError('pattern')" class="text-danger">Solo debe contener letras</small>
+                        <small *ngIf="submitted && surname?.hasError('required')" class="text-danger">El campo es requerido</small>
+                      </ng-container>
+                    </div>
+      
+                    <div class="col-sm-6 columna-alta">
+                      <label for="age" class="form-label">Edad</label>
+                      <input type="number" class="form-control" id="age" formControlName="age" placeholder="Ingrese edad" min="18" max="99">
+                      <ng-container *ngIf="age?.errors">
+                        <small *ngIf="age?.hasError('min')" class="text-danger">Debe ser mayor de edad</small>
+                        <small *ngIf="age?.hasError('max')" class="text-danger">Debe ser menor de 99 años</small>
+                        <small *ngIf="submitted && age?.hasError('required')" class="text-danger">El campo es requerido</small>
+                      </ng-container>
+                    </div>
+      
+                    <div class="col-sm-6 columna-alta">
+                      <label for="dni" class="form-label">DNI</label>
+                      <input type="text" class="form-control" id="dni" formControlName="dni" name="dni" placeholder="Ingrese su DNI">
+                      <ng-container *ngIf="dni?.errors">
+                        <small *ngIf="dni?.hasError('pattern')" class="text-danger">Solo debe contener números</small>
+                        <small *ngIf="dni?.hasError('maxlength')" class="text-danger">Debe tener 8 números</small>
+                        <small *ngIf="dni?.hasError('minlength')" class="text-danger">Debe tener 8 números</small>
+                        <small *ngIf="submitted && dni?.hasError('required')" class="text-danger">El campo es requerido</small>
+                      </ng-container>
+                    </div>
+    
+                    <div class="col-sm-6 columna-alta">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="text" class="form-control" id="email" formControlName="email" placeholder="Ingrese su email">
+                      <small *ngIf="submitted && email?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </div>
+      
+                    <div class="col-sm-6 columna-alta">
+                      <label for="password" class="form-label">Contraseña</label>
+                      <input type="password" class="form-control" id="password" formControlName="password" placeholder="***********">
+                      <small *ngIf="submitted && password?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </div>
+                  </div>
+                  
+                  <div class="col-sm-6" style="height: 88px">
+                    <div class="mb-1">
+                        <label for="photo" style=" padding: 5px;">Subir foto de Perfil:</label>
+                        <input type="file" id="photo" (change)="saveFirstPhoto($event)" accept=".jpg, .jpeg, .png">
+                        <small *ngIf="submitted && !selectedFileOne" class="text-danger" style="padding: 48px;">El campo es requerido</small>
+                    </div>
+                  </div>
+  
+                    <re-captcha (resolved)="runRecaptcha($event)" siteKey="6LeW5_gqAAAAABzMro4QewS2O1aDiaif2lH_HfzL"></re-captcha>
+    
+                  <p class="error-mensaje" style="height: 25px;">{{msjError}}</p>
+                  <hr class="my-2">
+                  
+                  <button class="boton w-100 btn btn-lg" type="submit">Registrar</button>
+                </form>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </main>
+    </div>

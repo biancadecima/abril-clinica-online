@@ -1,0 +1,269 @@
+.perfil-wrap {
+    margin: auto;
+    background: #4faaff;
+    background: linear-gradient(234deg,rgba(79, 170, 255, 1) 0%, rgba(247, 202, 96, 1) 100%); 
+    background-size: 100% 120%;
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+  
+}
+  
+.perfil-wrap::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.perfil-html {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    gap: 20px;
+}
+
+.Especialista {
+    padding-top: 80px;
+}
+  
+.Paciente, .Admin {
+    padding-top: 200px;
+}
+
+.titulo{
+    color: rgba(255, 255, 255, 0.884);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    font-size: 50px;
+}
+
+
+.turnos-html .button{
+    text-transform:uppercase;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 18px; 
+    margin: 10px; 
+    margin-top: 50px;
+    cursor: pointer;
+    background: rgba(0, 166, 185, 0.1);
+    background: #00a0a0;
+    border: none;
+    border-radius: 10%;
+}
+
+.tarjeta-presentacion{
+    height: 360px;
+    width: 700px;
+    border-style: none;
+    border-radius: 20px;
+    background-color: #ffffff;
+    align-items: flex-start;
+    display: flex;
+}
+
+.tarjeta-horarios{
+    height: 440px;
+    width: 700px;
+    border-style: none;
+    border-radius: 20px;
+    background-color: #ffffff;
+    align-items: flex-start;
+    display: flex;
+}
+
+.container{
+    max-height: 350px;
+    display: grid;
+    gap: 10px;
+}
+
+
+.containerdatos{
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}
+
+.foto-usuario {
+    flex: 0 0 25%; 
+}
+  
+.foto-usuario img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.datos-usuario {
+    flex: 1; 
+    text-align: left;
+    display: grid;
+}
+  
+.datos-usuario p {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.containertitulo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 10px;
+}
+  
+.titulo-contenedor {
+    flex: 1; 
+    text-align: center;
+    font-weight: bold;
+    color: #000000;
+    font-size: 40px;
+    padding-left: 20px;
+}
+
+.titulo-contenedor-horarios{
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+    color: #000000;
+    font-size: 30px;
+    padding-left: 20px;
+}
+  
+.logo-derecha {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.nombre{
+    font-weight: bold;
+    color: #000000;
+    font-size: 30px;
+}
+
+.container-titulo-horarios {
+    align-items: center;
+    justify-content: space-between; 
+    padding-top: 10px;
+}
+
+.dias-semana{
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.dias-semana button{
+    background-color: #00caca;
+    border-radius: 20px;
+}
+
+.dias-semana button:hover{
+    background-color: #00f6f6;
+}
+
+.dias-semana button.activo {
+    background-color: #00f2ff;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+
+.contenedor-especialidades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+
+.card-especialidad {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  flex: 1 1 calc(50% - 20px); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 48%; 
+}
+
+
+.titulo-especialidad {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+
+.horario {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.input-horario {
+  width: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.cards{
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  max-height: 130px;
+}
+
+.guardarHorarios{
+  background-color: #00caca;
+  border-radius: 20px;
+  width: 200px;
+}
+
+.error-mensaje{
+  color: red;
+}
+
+.navegacion-semanal button{
+  border-radius: 10px;
+  background-color: #00dbdb;
+}
+
+
+.botonHistoriaClinica{
+  text-transform:uppercase;
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 18px;
+  margin: 10px; 
+  cursor: pointer; 
+  background: rgba(0, 166, 185, 0.1);
+  background: #00a0a0;
+  border: none;
+  border-radius: 10%;
+}

@@ -1,0 +1,61 @@
+<div class="login-wrap">
+    <div @fadeAnimation>
+        <div class="login-html">
+            <h2 class="titulo">Iniciar Sesión</h2>
+                <div class="login-form">
+                    <div class="sign-in-htm">
+                        <div class="group">
+                            <label for="user" class="label">Correo electrónico</label>
+                            <!-- <input id="user" type="text" class="input" placeholder="example@correo.com"> -->
+                          <input [(ngModel)]="userEmail" name = "userEmail" type="text" class ="input" placeholder="ejemplo@correo.com">
+                        </div>
+                        <div class="group" style="margin-bottom: 30px;">
+                            <label for="pass" class="label">Contraseña</label>
+                          <input [(ngModel)]="userPassword" name = "userPassword" type="password" class ="input" placeholder="**********">
+                        </div>
+                        <!--<div class="group">
+                            <div class="row" style="max-width: 99%; height: 50px;">
+                                <div class="col-sm-2" *ngFor="let patient of patients; let i = index">
+                                    <button 
+                                        (click)="directAccess(patient.email, patient.pass)" 
+                                        class="btn-img">
+                                        <img 
+                                            [src]="paciente.fotoUno" 
+                                            alt="Imagen de Paciente {{i + 1}}" 
+                                            class="img-fluid rounded-circle">
+                                    </button>
+                                </div>
+                                <div class="col-sm-2" *ngFor="let especialista of especialistas; let i = index">
+                                    <button 
+                                        (click)="rellenarCredenciales(especialista.email, especialista.pass)" 
+                                        class="btn-img">
+                                        <img 
+                                            [src]="especialista.fotoUno" 
+                                            alt="Imagen de Especialista {{i + 1}}" 
+                                            class="img-fluid rounded-circle">
+                                    </button>
+                                </div>
+        
+                                <div class="col-sm-1" *ngFor="let admin of administradores; let i = index">
+                                    <button 
+                                        (click)="rellenarCredenciales(admin.email, admin.pass)" 
+                                        class="btn-img">
+                                        <img 
+                                            [src]="admin.fotoUno" 
+                                            alt="Imagen de Especialista {{i + 1}}" 
+                                            class="img-fluid rounded-circle">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="group">
+                        <p class="error-mensaje">{{errorMessage}}</p>
+                            <!-- <input type="submit" class="button" (click)="Login"> -->
+                        <button type = "submit" class="button" (click) = "Login()">Iniciar sesión</button>
+                        </div>
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

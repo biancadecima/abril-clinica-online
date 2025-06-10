@@ -1,0 +1,143 @@
+<div class="container">
+    <h1 class="titulo">Detalles del Usuario</h1>
+
+    <div class="tabla">
+        <div class="contenido">
+            <!-- Datos comunes -->
+            <div class="row fila">
+                <div class="col-md-6 titulos">
+                    <h3>Nombre:</h3>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ user?.name }}</p>
+                </div>
+            </div>
+            <div class="row fila">
+                <div class="col-md-6 titulos">
+                    <h3>Apellido:</h3>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ user?.surname }}</p>
+                </div>
+            </div>
+            <div class="row fila">
+                <div class="col-md-6 titulos">
+                    <h3>Edad:</h3>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ user?.age }}</p>
+                </div>
+            </div>
+            <div class="row fila">
+                <div class="col-md-6 titulos">
+                    <h3>DNI:</h3>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ user?.dni }}</p><!--| formatodni-->
+                </div>
+            </div>
+            <div class="row fila">
+                <div class="col-md-6 titulos">
+                    <h3>Email:</h3>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ user?.email }}</p>
+                </div>
+            </div>
+            <div class="row fila">
+                <div class="col-md-6 titulos">
+                    <h3>Rol:</h3>
+                </div>
+                <div class="col-md-6">
+                    <p>{{ user?.role}}</p> <!--| tolowercase-->
+                </div>
+            </div>
+
+           
+            <ng-container [ngSwitch]="user?.role">
+                <!-- Especialista -->
+                <ng-container *ngSwitchCase="'Especialista'">
+                    <div class="row fila">
+                        <div class="col-md-6 titulos">
+                            <h3>Especialidades:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ getSpecialities(user) }}</p>
+                        </div>
+                    </div>
+                    <div class="row fila">
+                        <div class="col-md-6 titulos">
+                            <h3>Verifico el Email:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ user?.isVerifiedEmail }}</p><!--| verification-->
+                        </div>
+                    </div>
+                    <div class="row fila">
+                        <div class="col-md-6 titulos">
+                            <h3>Verificado por Admin:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ user?.isVerifiedAdmin}}</p><!--| verification-->
+                        </div>
+                    </div>
+                    <div class="row fila">
+                        <div class="col-md-6 titulos">
+                            <h3>Foto de Perfil:</h3>
+                        </div>
+                        <div class="col-md-6"> 
+                            <img [src]="user?.photo" alt="{{user.name}}" class="pelicula-img">
+                        </div>
+                    </div>
+                    <button type="button" class="button" (click)="changeUserStatus('Verificar')" [disabled]="user?.role !== 'Especialista'">Verificar usuario</button>
+                    <button type="button" class="button" (click)="changeUserStatus('Desverificar')" [disabled]="user?.role !== 'Especialista'">Desverificar usuario</button>
+                </ng-container>
+
+                <!-- Paciente -->
+                <ng-container *ngSwitchCase="'Paciente'">
+                    <div class="row fila">
+                        <div class="col-md-6 titulos">
+                            <h3>Obra Social:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ user?.insurance }}</p>
+                        </div>
+                    </div>
+                    <div class="row fila">
+                        <div class="col-md-6 titulos">
+                            <h3>Verifico el Email:</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{ user?.isVerifiedEmail}}</p><!--| verification-->
+                        </div>
+                    </div>
+                    <div class="row fila">
+                        <div class="col-md-4 titulos">
+                            <h3>Fotos de Perfil:</h3>
+                        </div>
+                        <div class="col-md-4"> 
+                            <img [src]="user?.photo" alt="{{user.name}}" class="pelicula-img">
+                        </div>
+                        <div class="col-md-4"> 
+                            <img [src]="user?.photo2" alt="{{user.name}}" class="pelicula-img">
+                        </div>
+                    </div>
+                </ng-container>
+
+                <!-- Admin -->
+                <ng-container *ngSwitchCase="'Admin'">
+                    <div class="row fila">
+                        <div class="col-md-6 titulos">
+                            <h3>Foto de Perfil:</h3>
+                        </div>
+                        <div class="col-md-6"> 
+                            <img [src]="user?.photo" alt="{{user.name}}" class="pelicula-img" style="height: 100px; width: auto;">
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+    <button *ngIf = "user?.role == 'Paciente'" class = "botonHistoriaClinica" (click)="showMedicalRecord()">Ver Historia Clinica</button>
+    <!--<button *ngIf = "user?.role == 'Paciente'" class = "botonHistoriaClinica" (click)="descargarPDF()">Descargar PDF Historia Clinica</button>-->
+</div>

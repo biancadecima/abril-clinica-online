@@ -1,0 +1,87 @@
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.titulo {
+    padding-bottom: 20px;
+}
+
+.tabla {
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 2%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #f9f9f9;
+}
+
+.contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fila {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.fila:last-child {
+    border-bottom: none; 
+}
+
+.fila h3 {
+    margin: 0;
+    color: gray;
+    font-size: 1.2rem;
+}
+
+.fila p {
+    margin: 0;
+    color: black;
+    font-size: 1rem;
+}
+
+.titulos{
+    text-align: start;
+}
+
+.pelicula-img{
+    height: 100px; 
+    width: auto;
+    max-width: 200px;
+}
+
+.button{
+    text-transform:uppercase;
+    flex-direction: column;
+    color: #fff;
+    font-size: 18px; 
+    cursor: pointer; 
+    background: rgba(0, 166, 185, 0.1);
+    background-color: #00c177d5;
+    border: none;
+    border-radius: 10%;
+}
+
+.button:hover{
+    background-color: #00e67b;
+}
+
+.botonHistoriaClinica{
+    text-transform:uppercase;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 18px; 
+    margin: 10px; 
+    cursor: pointer; 
+    background: rgba(0, 166, 185, 0.1);
+    background: #01b783;
+    border: none;
+    border-radius: 10%;
+}

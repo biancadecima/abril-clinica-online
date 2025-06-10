@@ -1,0 +1,89 @@
+/* Estilo del navbar */
+.navbar {
+  background-color: white;
+  width: 90%;
+  height: 90px;
+  margin: 10px auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar a {
+  color: black !important;
+}
+
+.navbar-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 70px;
+  width: 90px;
+}
+
+.navbar-center {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.botonCerrarSesion {
+  background-color: rgb(207, 40, 40);
+  border: none;
+  border-radius: 15px;
+  padding: 8px 16px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botonCerrarSesion:hover {
+  background-color: rgb(150, 1, 1);
+}
+
+.botonUsuarios, .botonPerfil {
+  text-align: center;
+  background-color: rgb(3, 109, 209);
+  border: none;
+  border-radius: 15px;
+  padding: 8px 16px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.component-container {
+  min-height: 100vh;
+  background: #4faaff;
+  background: linear-gradient(234deg,rgba(79, 170, 255, 1) 0%, rgba(247, 202, 96, 1) 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 300px; 
+}

@@ -1,0 +1,133 @@
+.usuarios-wrap{
+    margin: auto;
+    /*background: url(/assets/MedicoFondo.jpg) no-repeat center;*/
+    background: #4faaff;
+    background: linear-gradient(234deg,rgba(79, 170, 255, 1) 0%, rgba(247, 202, 96, 1) 100%);
+    background-size: 100% 120%;
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19);
+    position: fixed;
+    padding: 25px;
+    padding-top: 120px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: flex-start;
+}
+  
+.usuarios-wrap::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.titulo
+{
+    font-size: 50px;
+}
+  
+.container{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; 
+}
+  
+.contenedor {
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+    height: 820px;
+    max-height: 820px;
+    overflow: hidden;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    max-height: 100vh;
+}
+    
+.centrado-registro {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+app-register {
+    max-width: 90%; 
+    max-height: 90vh; 
+    overflow-y: auto; 
+    box-sizing: border-box;
+    scrollbar-width: none;
+}
+
+::ng-deep .sin-fixed .register-wrap {
+    position: static !important; 
+    padding-top: 0 !important;
+}
+
+::ng-deep .sin-fixed .overlay {
+    position: static !important; 
+}
+
+.contenedor2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+    width: 100%;
+    height: 820px;
+    max-height: 820px;
+    overflow: hidden;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+}
+
+.contenedor2 app-detallesdelusuario{
+    width: 100%;  
+    height: 100%;  
+    align-items: center;
+    display: flex;
+}
+
+
+  /* .contenedor app-register {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+} */
+
+.button{
+    text-transform:uppercase;
+    color: #000000;
+    padding: 15px 30px; /* Espaciado dentro de los botones */
+    font-size: 18px; /* Tamaño de fuente del botón */
+    margin-top: 20px;
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    background: rgba(182, 190, 190, 0.753);
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10%;
+    width: 80%;
+}
+
+.button:hover{
+    background-color: #00e67b;
+}
+
+.close-button{
+    background-color: red;
+    width: 40px;
+    border-radius: 5px;
+}
+  

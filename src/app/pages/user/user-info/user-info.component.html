@@ -1,0 +1,27 @@
+<div class="usuarios-wrap">
+  
+    <div class="row align-items-md-stretch" style="width: 1800px">
+        <div class="col-md-7">
+            <div class="contenedor2">
+                <app-user-list (selectUserEvent) = "onSelectedUser($event)"></app-user-list>
+                <button type="submit" class="button" (click)="createUser()">Crear Usuario</button>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="contenedor" [ngClass]="{'centrado-registro': showSignUp}">
+            <app-user-details *ngIf="!showSignUp" [user]="selectUserEvent"></app-user-details>
+
+            <div class="row">
+              <div class="col-md-11">        
+              <app-sign-up *ngIf="showSignUp" class="sin-fixed"></app-sign-up>
+              </div>
+
+              <div class="col-md-1">
+                <button *ngIf="showSignUp" (click)="closeSignUp()" class="close-button">X</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+</div>

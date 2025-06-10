@@ -1,0 +1,58 @@
+.home-wrap {
+    margin: auto;
+    /*background: url(/assets/MedicoFondo.jpg) no-repeat center;*/
+    background: #4faaff;
+    background: linear-gradient(234deg,rgba(79, 170, 255, 1) 0%, rgba(247, 202, 96, 1) 100%);
+    background-size: 100% 120%;
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+  
+.home-wrap::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.home-html {
+    text-align: center;
+    padding-top: 60px;
+}
+
+.titulo{
+    color: rgba(255, 255, 255, 0.884);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 200px;
+    font-size: 90px;
+}
+
+.subtitulo{
+    color: rgba(255, 255, 255, 0.884);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
+
+.home-html .button{
+    text-transform:uppercase;
+    color: #4faaff;
+    padding: 15px 30px;
+    font-size: 18px; 
+    margin: 10px;
+    margin-top: 50px;
+    cursor: pointer; 
+    border: none;
+    border-radius: 10%;
+}
+
+  
+  
