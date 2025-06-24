@@ -1,0 +1,153 @@
+<div class="turnos-wrap">
+    <div class="turnos-html">
+        <h2 class="titulo">Solicitar Turno</h2>  
+      <div class="tabla">
+        <div class="container">
+          <div class = "containertitulo">
+            <button class="left-button" [disabled]="!selectedSpeciality" (click)="onBackClick()">Atras</button>
+            <!--<h4 *ngIf="showSpecialists" class="titulo-contenedor">Especialistas</h4>
+            <h4 *ngIf="showSpecialities" class="titulo-contenedor">Especialidades</h4>-->
+            <h4 *ngIf="showSpecialities" class="titulo-contenedor">Especialidades</h4>
+            <h4 *ngIf="showSpecialists" class="titulo-contenedor">Especialistas</h4>
+            <h4 *ngIf="showSchedules" class="titulo-contenedor">Horarios disponibles</h4>
+            <h4 *ngIf="showPatients" class="titulo-contenedor">Pacientes</h4>
+            <button class="right-button" [disabled]="!selectedSpeciality" (click)="onNextClick()">Siguiente</button>
+          </div>
+            <div class="row" style="overflow-y: auto; max-height: 600px;">
+
+              <ng-container *ngIf="showSpecialities"> 
+                <div *ngFor="let speciality of specialities" class="col-md-6 mb-4">
+                    <div class="card especialidad-card text-center"
+                    [class.selected]="speciality === selectedSpeciality"
+                    (click)="onSpecialityChange(speciality)">
+                    <img 
+                    [src]="getSpecialityPhoto(speciality)" 
+                    alt="Foto de la especialidad" 
+                    class="card-img-top foto-especialidad">
+                        <div class="card-body">  
+                            <input
+                            type="radio"
+                            [value]="speciality"
+                            name="speciality"
+                            (change)="onSpecialityChange(speciality)"
+                            [checked]="speciality === selectedSpeciality"
+                            style="display: none;"
+                          />
+                          <!--<h5 class="card-title">{{ speciality }}</h5>-->
+                        </div>
+                    </div>
+                </div>
+              </ng-container>
+
+
+              <ng-container *ngIf="showSpecialists">
+                <div *ngFor="let specialist of filteredSpecialists" class="col-md-4 mb-4">
+                  <div class="card especialista-card text-center"  
+                  [class.selected]="specialist === selectedSpecialist"
+                  (click)="onSpecialistChange(specialist)" ><!--bueno acá habia una directiva-->
+                  <h5 class="card-title">{{ specialist.name }} {{ specialist.surname }}</h5>  
+                  <img [src]="specialist.photo" alt="Foto del especialista" class="card-img-top foto-especialista">
+                    <div class="card-body">
+                      <!--<h5 class="card-title">{{ specialist.name }} {{ specialist.surname }}</h5>-->
+                      <input
+                        type="radio"
+                        [value]="specialist"
+                        name="specialist"
+                        (change)="onSpecialistChange(specialist)"
+                        [checked]="specialist === selectedSpecialist"
+                        style="display: none;"
+                      />
+                      <label>{{ specialist.specialities.join(', ') }}</label>
+                    </div>
+                  </div>
+                </div>   
+              </ng-container>
+
+            <ng-container *ngIf="showSchedules">
+              <div *ngFor="let item of dateWHorarios" class="mb-4">
+                <h5 class="text-center mb-3">{{ item.fecha }}</h5>
+                <div class="row">
+                  <div *ngFor="let horario of item.horariosDisponibles" class="col-md-4 mb-3" style="display: flex; justify-content: center; align-items: center;">
+                    <div class="card horario-card text-center"
+                        [class.selected]="selectedDate === item.fecha && selectedSchedule === horario"
+                        (click)="onScheduleChange(item.fecha, horario)">
+                      <div class="card-body-horario">
+                        <input type="radio"
+                              name="fechaHorario"
+                              style="display: none;"
+                              [checked]="selectedDate === item.fecha && selectedSchedule === horario">
+                        <label>{{ item.fecha }} - {{ horario }}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+              <!--<ng-container *ngIf="showDate">
+                <div *ngFor="let item of dateWHorarios" class="col-md-4 mb-4" style="display: flex; justify-content: center; align-items: center;">
+                    <div class="card fecha-card text-center"
+                    [class.selected]="item.fecha === selectedDate"
+                    (click)="onDateChange(item.fecha)">
+                        <div class="card-body-fecha">  
+                            <input
+                            type="radio"
+                            [value]="item.fecha"
+                            name="fecha"
+                            (change)="onDateChange(item.fecha)"
+                            [checked]="item.fecha === selectedDate"
+                            style="display: none;"
+                          />
+                          <label>{{item.fecha}} {{item.horariosDisponibles}}</label>
+                        </div>
+                    </div>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="showSchedules">
+                <div *ngFor="let horario of horarios" class="col-md-4 mb-4" style="display: flex; justify-content: center; align-items: center;">
+                    <div class="card horario-card text-center"
+                    [class.selected]="horario === selectedSchedule"
+                    (click)="onScheduleChange(horario)">
+                        <div class="card-body-horario">  
+                            <input
+                            type="radio"
+                            [value]="horario"
+                            name="horario"
+                            (change)="onScheduleChange(horario)"
+                            [checked]="horario === selectedSchedule"
+                            style="display: none;"
+                          />
+                          <label>{{horario}}</label>
+                        </div>
+                    </div>
+                </div>
+              </ng-container>-->
+
+              <ng-container *ngIf="showPatients">
+                <div *ngFor="let patient of patientList" class="col-md-4 mb-4">
+                  <div class="card paciente-card text-center"  
+                  [class.selected]="patient === selectedPatient"
+                  (click)="onPatientChange(patient)">
+                    <img [src]="patient.photo" alt="Foto del paciente" class="card-img-top foto-paciente">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ patient.name }} {{ patient.surname }}</h5>
+                      <input
+                        type="radio"
+                        [value]="patient"
+                        name="patient"
+                        (change)="onPatientChange(patient)"
+                        [checked]="patient === selectedPatient"
+                        style="display: none;"
+                      />
+                    </div>
+                  </div>
+                </div>   
+              </ng-container>
+
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </div>

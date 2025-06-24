@@ -1,0 +1,204 @@
+.turnos-wrap {
+  margin: auto;
+  background: url(/assets/background.jpg) no-repeat center;
+  background-size: 100% 120%;
+  background-color: rgba(255, 255, 255, 0.5); 
+  box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding-top: 50px;
+
+}
+  
+.turnos-wrap::after{
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  /*background-image: linear-gradient(to top, #000 0%, transparent);*/
+  z-index: -1;
+}
+
+.turnos-html{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+}
+
+.titulo{
+  color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  font-size: 50px;
+    
+}
+
+.turnos-html .button{
+  text-transform:uppercase;
+  color: #fff;
+  padding: 15px 30px; 
+  font-size: 18px;
+  margin: 10px;
+  margin-top: 50px;
+  cursor: pointer; 
+  background: rgba(0, 166, 185, 0.1);
+  background: #00a0a0;
+  border: none;
+  border-radius: 10%;
+}
+
+.tabla{
+  height: 700px;
+  width: 1400px;
+  /*border-style: solid;*/
+  background-color: #ffffffa7;
+  display: flex;
+  max-width: 100%;
+}
+
+.barra-titulo {
+  background-color: aquamarine;
+  color: #000;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px 5px 0 0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-button,
+.right-button {
+  /*color: #fff;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  background-color: rgb(3, 109, 209);
+  width: 100px;*/
+
+
+  color: white;
+  text-align: center;
+  background-color: rgba(102,182,206,255);
+  border: none;
+  border-radius: 15px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100px;
+}
+
+.containertitulo{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+
+.titulo-contenedor {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgba(102,182,206,255);
+  padding-bottom: 10px;
+  flex: 1;
+  text-align: center;
+  margin: 0;
+}
+
+.container{
+  padding-top: 30px;
+}
+
+
+.foto-especialista, .foto-paciente {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.especialista-card, .paciente-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 400px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+    
+}
+
+.especialista-card.selected, .especialidad-card.selected, .fecha-card.selected, .horario-card.selected, .paciente-card.selected{
+    border-color: rgb(3, 109, 209);
+}
+
+.especialidad-card .card-body {
+  padding: 0 !important;
+  height: 0;
+}
+
+.especialidad-card {
+  border: 1px solid #ddd;
+  overflow: hidden;
+  height: 300px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  margin: 0;
+}
+
+.foto-especialidad {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.fecha-card{
+  border: 1px solid #ddd;
+  border-radius: 0;
+  overflow: hidden;
+  height: 120px;
+  width: 120px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: rgba(102,182,206,255);
+  justify-content: center;
+}
+
+.card-body-fecha{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.horario-card{
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 100px;
+  width: 200px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: rgba(102,182,206,255);
+  justify-content: center;
+}
+
+
+
+  
+  

@@ -1,56 +1,56 @@
 .login-wrap {
-    margin: auto;
-    //background: url(/assets/MedicoFondo.jpg) no-repeat center;
-    background: #4faaff;
-    background: linear-gradient(234deg,rgba(79, 170, 255, 1) 0%, rgba(247, 202, 96, 1) 100%); 
-    background-size: 100% 120%;
-    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19);
-    position: fixed;
-    width: 100%;
-    height: 100%;
+  margin: auto;
+  background: url(/assets/background.jpg) no-repeat center;
+  /*background: #4faaff;
+  background: linear-gradient(234deg,rgba(79, 170, 255, 1) 0%, rgba(247, 202, 96, 1) 100%);*/
+  background-size: 100% 120%;
+  box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
     
-    }
+.login-wrap::after{
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+}
     
-    .login-wrap::after{
-      content: "";
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      z-index: -1;
-    }
-    
-    .login-html {
-      height: 670px;
-      width: 440px;
-      position: absolute;
-      top: 55%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 90px 70px 50px 70px;
-      background: rgb(255, 245, 223);
-      background-size: 200% 200%;
-      border-radius: 5px;
-    }
-    .login-html .sign-in-htm {
-      top: 40%;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      position: absolute;
-      transform: translateY(-40%); /* Modificado: Mover el formulario hacia abajo */
-      backface-visibility: hidden;
-      transition: all .4s linear;
-    }
-    .titulo{
-      color: rgb(0, 0, 0);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-top: 15px;
-      font-size: 50px;
-    }
+.login-html {
+  height: 670px;
+  width: 440px;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 90px 70px 50px 70px;
+  background-color: #ffffffd2;
+  background-size: 200% 200%;
+  border-radius: 5px;
+}
+
+.login-html .sign-in-htm {
+  top: 40%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  transform: translateY(-40%); /* Modificado: Mover el formulario hacia abajo */
+  backface-visibility: hidden;
+  transition: all .4s linear;
+}
+.titulo{
+  color: rgba(102,182,206,255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+  font-size: 50px;
+}
     
     
     .login-html .sign-in,
@@ -74,7 +74,7 @@
     .login-form .group .input,
     .login-form .group .button {
       width: 100%;
-      color: #000000;
+      color: rgba(102,182,206,255);
       display: block;
     }
     .login-form .group .input,
@@ -88,8 +88,13 @@
     
     
     .login-form .group .button {
-      background: #4faaff;;
+      background-color: rgba(102,182,206,255);
       margin-top: 10%;
+      color: #ffffff;
+    }
+
+    .button:hover{
+    background-color: #3c8296;
     }
     
     
@@ -105,7 +110,7 @@
     }
   
     input::placeholder {
-      color: white;
+      color: rgba(102,182,206,255);
       opacity: 0.3;
     }
   
@@ -116,7 +121,7 @@
     .btn-img {
       border: none;
       background-color: white;
-      border: 2px solid #000; /* Grosor y color del borde */
+      border: 2px solid rgba(102,182,206,255); /* Grosor y color del borde */
       padding: 0;
       cursor: pointer;
       display: inline-block;

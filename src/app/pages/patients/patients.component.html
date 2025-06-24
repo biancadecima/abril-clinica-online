@@ -1,0 +1,39 @@
+<div class="pacientes-wrap">
+  <div class="pacientes-html">
+    <div class="tabla">
+      <div class="container">
+        <div class="containertitulo">
+          <h4 class="titulo-contenedor">Pacientes:</h4>
+        </div>
+        <div class="row justify-content-center" style="overflow-y: auto; max-height: 600px;">
+          <div *ngFor="let patient of patients" class="columnas col-md-4 mb-4 text-center">
+
+            <button
+              class="favbutton"
+              [class.active]="patient === selectedPatient"
+              (click)="onPatientChange(patient)"
+            >
+        
+              <img
+                [src]="patient.photo"
+                alt="Foto del paciente"
+                class="img-fluid rounded-circle paciente-img"
+              />
+          
+              <h5 class="paciente-nombre">{{ patient.name }} {{ patient.surname }}</h5>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="containerBoton">
+    <button
+      class="botonHistoriaClinica"
+      (click)="showMedicalRecord()"
+    ><!--[appDisableIfEmpty]="pacientes"-->
+      Ver Historia Clinica
+    </button>
+  </div>
+</div>

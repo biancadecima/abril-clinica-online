@@ -36,5 +36,54 @@ export const routes: Routes = [
             (c) => c.ProfileComponent
         ),
       title: 'Mi perfil'
+    },
+    { path: 'solicitar-turno',
+      loadComponent: () => 
+        import('./pages/request-appointment/request-appointment.component').then(
+            (c) => c.RequestAppointmentComponent
+        ),
+      title: 'Solicitar turno'
+    },
+    { path: 'mis-turnos',
+      loadComponent: () => 
+        import('./pages/my-appointments/my-appointments.component').then(
+            (c) => c.MyAppointmentsComponent
+        ),
+      title: 'Mis turnos'
+    },
+    { path: 'turnos',
+      loadComponent: () => 
+        import('./pages/appointments/appointments.component').then(
+            (c) => c.AppointmentsComponent
+        ),
+      title: 'Turnos'
+    },
+    { path: 'historia-clinica',
+      loadComponent: () => 
+        import('./pages/medical-record/medical-record.component').then(
+            (c) => c.MedicalRecordComponent
+        ),
+      title: 'Historia Clinica'
+    },
+    { path: 'mostrar-historial',
+      loadComponent: () => 
+        import('./pages/show-records/show-records.component').then(
+            (c) => c.ShowRecordsComponent
+        ),
+      title: 'Ver Historias'
+    },
+    { path: 'pacientes',
+      loadComponent: () => 
+        import('./pages/patients/patients.component').then(
+            (c) => c.PatientsComponent
+        ),
+      title: 'Pacientes'
+    },
+    { path: 'informes',
+      loadComponent: () => 
+        import('./pages/information/information.component').then(
+            (c) => c.InformationComponent
+        ),
+      title: 'Informes'
     }
 ];

@@ -1,7 +1,6 @@
 .perfil-wrap {
     margin: auto;
-    background: #4faaff;
-    background: linear-gradient(234deg,rgba(79, 170, 255, 1) 0%, rgba(247, 202, 96, 1) 100%); 
+    background: url(/assets/background.jpg) no-repeat center;
     background-size: 100% 120%;
     box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19);
     position: fixed;
@@ -66,7 +65,7 @@
     width: 700px;
     border-style: none;
     border-radius: 20px;
-    background-color: #ffffff;
+    background-color: #ffffffa7;
     align-items: flex-start;
     display: flex;
 }
@@ -76,7 +75,7 @@
     width: 700px;
     border-style: none;
     border-radius: 20px;
-    background-color: #ffffff;
+    background-color: #ffffffa7;
     align-items: flex-start;
     display: flex;
 }
@@ -170,7 +169,7 @@
 }
 
 .dias-semana button{
-    background-color: #00caca;
+    background-color: rgba(102,182,206,255);
     border-radius: 20px;
 }
 
@@ -240,7 +239,7 @@
 }
 
 .guardarHorarios{
-  background-color: #00caca;
+  background-color: rgba(102,182,206,255);
   border-radius: 20px;
   width: 200px;
 }
@@ -255,15 +254,15 @@
 }
 
 
-.botonHistoriaClinica{
-  text-transform:uppercase;
+.botonHistoriaClinica {
+  text-transform: uppercase;
   color: #fff;
   padding: 15px 30px;
   font-size: 18px;
-  margin: 10px; 
-  cursor: pointer; 
-  background: rgba(0, 166, 185, 0.1);
-  background: #00a0a0;
+  margin: 10px;
+  cursor: pointer;
+  background-color: rgba(102,182,206,255);
   border: none;
-  border-radius: 10%;
+  border-radius: 8px; /* Redondeo suave en las esquinas */
+  transition: background-color 0.3s ease; /* Suaviza la transición de color */
 }

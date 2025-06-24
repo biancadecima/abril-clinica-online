@@ -1,0 +1,45 @@
+<div class="historiaclinica-wrap">
+    <div class="historiaclinica-html">
+      
+      <div class="tabla">
+        <div class="container">
+          <div class = "containertitulo">
+            <h4 class="titulo-contenedor">Historia Clinica:</h4>
+          </div>
+
+          <div class="cards-container">
+              <div class="card" *ngFor="let record of medicalRecords">
+                <div class="card-body">
+                  <h5 class="card-title">Paciente: {{ record.patient }}</h5>
+                  <p class="card-text">
+                    Fecha De Emision: {{ record.fechaEmision }}<br>
+                    Especialista: {{ record.specialist }} <br>
+                    Especialidad: {{ record.speciality }}<br>
+                    Paciente: {{ record.patient }}<br>
+                    Fecha: {{ record.apptDate }}<br>
+                    Hora: {{ record.apptHour }}<br>
+                    Altura: {{ record.altura }}<br>
+                    Presion: {{ record.presion }}<br>
+                    Temperatura: {{ record.temperatura }}                    
+                  </p>
+
+                  <p style="font-weight: bold;">Otros Datos</p>
+
+                  <p class="card-text" *ngIf="record.dinamicos && objectKeys(record.dinamicos).length">
+                    <span *ngFor="let key of objectKeys(record.dinamicos)">
+                      {{ key }}: {{ record.dinamicos[key] }}<br>
+                    </span>
+                  </p>
+
+                  <button class = "botonResenia" (click)="showReview(record.idAppointment)">Reseña</button>
+
+                </div>
+              </div>
+          </div>
+
+        </div>
+        
+      </div>
+    </div>
+
+  </div>

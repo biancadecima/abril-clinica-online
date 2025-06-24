@@ -11,9 +11,9 @@
      
       <div class="navbar-center">
         <a class="nav-link active text-white mx-3" routerLink="home" routerLinkActive="active-route">Inicio</a>
-        <a *ngIf="role == 'Paciente' || role == 'Especialista'" class="nav-link active text-white mx-3" routerLink="misturnos" routerLinkActive="active-route">Mis Turnos</a>
+        <a *ngIf="role == 'Paciente' || role == 'Especialista'" class="nav-link active text-white mx-3" routerLink="mis-turnos" routerLinkActive="active-route">Mis Turnos</a>
         <a *ngIf="role == 'Admin'" class="nav-link active text-white mx-3" routerLink="turnos" routerLinkActive="active-route">Turnos</a>
-        <a *ngIf="role == 'Admin' || role == 'Paciente'" class="nav-link active text-white mx-3" routerLink="solicitarturno" routerLinkActive="active-route">Solicitar Turno</a>
+        <a *ngIf="role == 'Admin' || role == 'Paciente'" class="nav-link active text-white mx-3" routerLink="solicitar-turno" routerLinkActive="active-route">Solicitar Turno</a>
         <a *ngIf="role == 'Admin'" class="nav-link active text-white mx-3" routerLink="informes" routerLinkActive="active-route">Informes</a>
       </div>
 

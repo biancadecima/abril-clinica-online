@@ -36,7 +36,7 @@ export class UserDetailsComponent {
 
   showMedicalRecord(){
     this.medicalRecordService.emailPatient = this.user.email;
-    this.router.navigateByUrl('/historia-clinica');
+    this.router.navigateByUrl('/mostrar-historial');
   }
 
   /*async downloadPDF() {
@@ -110,13 +110,13 @@ export class UserDetailsComponent {
         `Turno de ${record.speciality}`,
         `Paciente: ${record.patient}`,
         `Especialista: ${record.specialist}`,
-        `Fecha del turno: ${record.appointmentDate}`,
-        `Hora del turno: ${record.appointmentHour}`,
-        `Altura: ${record.height}`,
-        `Peso: ${record.weight}`,
-        `Presión: ${record.pressure}`,
-        `Temperatura: ${record.temperature}`,
-        `Fecha de emisión: ${record.date}`
+        `Fecha del turno: ${record.apptDate}`,
+        `Hora del turno: ${record.apptHour}`,
+        `Altura: ${record.altura}`,
+        `Peso: ${record.peso}`,
+        `Presión: ${record.presion}`,
+        `Temperatura: ${record.temperatura}`,
+        `Fecha de emisión: ${record.fechaEmision}`
       ];
   
       fixedData.forEach(text => {

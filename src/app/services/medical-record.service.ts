@@ -11,23 +11,23 @@ export class MedicalRecordService {
   patient: string = '';
   idAppointment: string = '';
   speciality: string = '';
-  appointmentDate: string = '';
-  appointmentHour: string = '';
+  apptDate: string = '';
+  apptHour: string = '';
 
   constructor(private firestore: Firestore) { }
 
-  /*async guardarHistoriaClinica(historial: any) {  
+  async saveMedicalRecord(medicalrecord: any) {  
     try {
 
-      const col = collection(this.firestore, 'historia-clinica');
+      const col = collection(this.firestore, 'medicalrecord');
 
-      await addDoc(col, historial);
+      await addDoc(col, medicalrecord);
 
     } catch (error) {
       console.error('Error al guardar la historia clinica:', error);
       throw error;
     }
-  }*/
+  }
 
   async getMedicalRecord(): Promise<any[]> {
     const records: any[] = [];
@@ -48,21 +48,19 @@ export class MedicalRecordService {
     return records;
   }
 
-  /*async getHistoriaClinicaPorTurno(idTurno: string): Promise<any> {
+  async getMedicalRecordByAppt(idAppointment: string): Promise<any> {
     try {
       
-      const historiaClinicaRef = collection(this.firestore, 'historia-clinica');
+      const medicalRecordRef = collection(this.firestore, 'medicalrecord');
   
      
-      const q = query(historiaClinicaRef, where('idTurno', '==', idTurno));
+      const q = query(medicalRecordRef, where('idAppointment', '==', idAppointment));
       const querySnapshot = await getDocs(q);
   
-     
       if (!querySnapshot.empty) {
         return querySnapshot.docs[0].data();
       }
   
-      
       return null;
     } catch (error) {
       console.error('Error al obtener la historia clínica:', error);
@@ -70,15 +68,15 @@ export class MedicalRecordService {
     }
   }
 
-  async getReseñaPorIdTurno(idTurno: string): Promise<string | null> {
+  async getReviewByIdAppt(idAppt: string): Promise<string | null> {
     try {
-      const turnosRef = collection(this.firestore, 'turnos');
-      const q = query(turnosRef, where('id', '==', idTurno));
+      const turnosRef = collection(this.firestore, 'appointments');
+      const q = query(turnosRef, where('id', '==', idAppt));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
         const turnoData = querySnapshot.docs[0].data();
-        return turnoData['comentario'] || null;
+        return turnoData['comment'] || null;
       }
 
       console.log('No se encontró un turno con el idTurno especificado.');
@@ -87,5 +85,5 @@ export class MedicalRecordService {
       console.error('Error al obtener la reseña por idTurno:', error);
       throw error;
     }
-  }*/
+  }
 }

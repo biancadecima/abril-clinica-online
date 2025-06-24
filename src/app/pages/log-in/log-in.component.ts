@@ -47,20 +47,20 @@ export class LogInComponent implements OnInit{
   async ngOnInit() {
 
     this.spinnerService.show();
-    setTimeout(() => {
+    /*setTimeout(() => {
       this.spinnerService.hide(); // Ocultarlo después de 3 segundos
-    }, 3000);
+    }, 3000);*/
 
-    ///TODO creo que esto es para los accesos directos, es mejor hardcodearlos
-   /* try {
-      this.patients = await this.userService.getTresPacientes();
+    ///TODO esto es para los accesos directos
+   try {
+      this.patients = await this.userService.getThreePatients();
       console.log(this.patients);
     } catch (error) {
       console.error('Error al cargar los pacientes:', error);
     }
 
     try {
-      this.specialists = await this.userService.getDosEspecialistas();
+      this.specialists = await this.userService.getTwoSpecialists();
       console.log(this.specialists);
     } catch (error) {
       console.error('Error al cargar los especialistas:', error);
@@ -73,7 +73,7 @@ export class LogInComponent implements OnInit{
       console.error('Error al cargar los administradores:', error);
     } finally{
       this.spinnerService.hide();
-    }*/
+    }
   }
 
   async Login(): Promise<void> {

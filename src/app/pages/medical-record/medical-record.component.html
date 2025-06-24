@@ -1,0 +1,127 @@
+<div class="historia-wrap">
+    <div class="historia-clinica">
+        <div class="py-3 text-center">
+          <h2>Historia Clinica</h2>
+        </div>
+    
+        <form [formGroup]="form" class="form" (ngSubmit)="submitForm()">
+
+            <div class="row g-3">
+                <div class="col-sm-6 columna-alta">
+                  <label for="altura" class="form-label">Altura (cm)</label>
+                  <input type="text" class="form-control" id="altura" formControlName="altura" placeholder="Ingrese la altura">
+                    <ng-container *ngIf="altura?.errors">
+                        <small *ngIf="altura?.hasError('pattern')" class="text-danger">Solo debe contener numeros</small>
+                        <small *ngIf="altura?.hasError('min')" class="text-danger">Debe ser 10cm o mas</small>
+                        <small *ngIf="altura?.hasError('max')" class="text-danger">Debe ser menor de 300cm</small>
+                        <small *ngIf="submitted && altura?.hasError('required')" class="text-danger">El campo es requerido</small>
+                      </ng-container>
+                </div>
+  
+                <div class="col-sm-6 columna-alta">
+                  <label for="peso" class="form-label">Peso (kg)</label>
+                  <input type="text" class="form-control" id="peso" formControlName="peso" placeholder="Ingrese el peso">
+                  <ng-container *ngIf="peso?.errors">
+                    <small *ngIf="peso?.hasError('pattern')" class="text-danger">Solo debe contener numeros</small>
+                    <small *ngIf="peso?.hasError('min')" class="text-danger">Debe ser 0 o mas</small>
+                    <small *ngIf="peso?.hasError('max')" class="text-danger">Debe ser menor de 600kg</small>
+                    <small *ngIf="submitted && peso?.hasError('required')" class="text-danger">El campo es requerido</small>
+                  </ng-container>
+                </div>
+
+                <div class="col-sm-6 columna-alta">
+                    <label for="temperatura" class="form-label">Temperatura (°C)</label>
+                    <input type="text" class="form-control" id="temperatura" formControlName="temperatura" placeholder="Ingrese la temperatura">
+                    <ng-container *ngIf="temperatura?.errors">
+                      <small *ngIf="temperatura?.hasError('pattern')" class="text-danger">Solo debe contener numeros</small>
+                      <small *ngIf="temperatura?.hasError('min')" class="text-danger">Debe ser 10 o mas</small>
+                      <small *ngIf="temperatura?.hasError('max')" class="text-danger">Debe ser menor de 40</small>
+                      <small *ngIf="submitted && temperatura?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </ng-container>
+                </div>
+
+                <div class="col-sm-6 columna-alta">
+                    <label for="presion" class="form-label">Presion</label>
+                    <input type="text" class="form-control" id="presion" formControlName="presion" placeholder="Ingrese la presion">
+                    <ng-container *ngIf="presion?.errors">
+                      <small *ngIf="presion?.hasError('pattern')" class="text-danger">Solo debe contener numeros</small>
+                      <small *ngIf="presion?.hasError('min')" class="text-danger">Debe ser 80 o mas</small>
+                      <small *ngIf="presion?.hasError('max')" class="text-danger">Debe ser menor de 180</small>
+                      <small *ngIf="submitted && presion?.hasError('required')" class="text-danger">El campo es requerido</small>
+                    </ng-container>
+                </div>
+
+                <label class="form-label" style="font-weight: bold;">Información Adicional</label>
+
+                <div class="col-sm-6 columna-dinamicos">
+
+                    <div class="row g-3">
+                        <div class = "col-sm-6">
+                            <label for="clave1" class="form-label">Clave</label>
+                            <input type="text" class="form-control" id="clave1" formControlName="clave1" placeholder="Ejemplo: caries">
+                            <ng-container *ngIf="clave1?.errors">
+                                <small *ngIf="clave1?.hasError('pattern')" class="text-danger">Solo debe contener letras</small>
+                              <small *ngIf="submitted && clave1?.hasError('required')" class="text-danger">El campo es requerido</small>
+                            </ng-container>
+                        </div>
+
+                        <div class = "col-sm-6">
+                            <label for="valor1" class="form-label">Valor</label>
+                            <input type="text" class="form-control" id="valor1" formControlName="valor1" placeholder="Ejemplo: 4">
+                            <ng-container *ngIf="valor1?.errors">
+                              <small *ngIf="submitted && valor1?.hasError('required')" class="text-danger">El campo es requerido</small>
+                            </ng-container>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6 columna-dinamicos">
+                    <div class="row g-3">
+                        <div class = "col-sm-6">
+                            <label for="clave2" class="form-label">Clave</label>
+                            <input type="text" class="form-control" id="clave2" formControlName="clave2" placeholder="Ejemplo: caries">
+                            <ng-container *ngIf="clave2?.errors">
+                              <small *ngIf="clave2?.hasError('pattern')" class="text-danger">Solo debe contener letras</small>
+                              <small *ngIf="submitted && clave2?.hasError('required')" class="text-danger">El campo es requerido</small>
+                            </ng-container>
+                        </div>
+
+                        <div class = "col-sm-6">
+                            <label for="valor2" class="form-label">Valor</label>
+                            <input type="text" class="form-control" id="valor2" formControlName="valor2" placeholder="Ejemplo: 4">
+                            <ng-container *ngIf="valor2?.errors">
+                              <small *ngIf="submitted && valor2?.hasError('required')" class="text-danger">El campo es requerido</small>
+                            </ng-container>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-6 columna-dinamicos">
+                    <div class="row g-3">
+                        <div class = "col-sm-6">
+                            <label for="clave3" class="form-label">Clave (opcional)</label>
+                            <input type="text" class="form-control" id="clave3" formControlName="clave3" placeholder="Ejemplo: caries">
+                            <ng-container *ngIf="clave3?.errors">
+                              <small *ngIf="clave3?.hasError('pattern')" class="text-danger">Solo debe contener letras</small>
+                            </ng-container>
+                        </div>
+
+                        <div class = "col-sm-6">
+                            <label for="valor3" class="form-label">Valor (opcional)</label>
+                            <input type="text" class="form-control" id="valor3" formControlName="valor3" placeholder="Ejemplo: 4">
+                        </div>
+
+                    </div>
+                </div>
+
+              </div>
+        
+        
+            <hr class="my-2">
+            
+            <button class="boton w-100 btn btn-lg" type="submit">Enviar</button>
+          </form>
+    </div>
+</div>

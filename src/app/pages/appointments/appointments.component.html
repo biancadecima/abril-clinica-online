@@ -1,0 +1,74 @@
+<div class="turnos-wrap">
+    <div class="turnos-html">
+      <h2 class="titulo">Turnos</h2>
+  
+      <div class="tabla">
+        <div class="row" style="padding-left: 20px; gap: 20px;">
+          <div class="filtros col-md-4">
+            <div class="barra-titulo">Filtros</div>
+            <div class="contenido-filtros">
+              <div class="contenedor-especialidades">
+                <h4 class="titulo-contenedor">Especialidades</h4>
+                <div class="scrollable-container">        
+                  <div *ngFor="let speciality of specialities">
+                    <input 
+                    type="checkbox"
+                    [value]="speciality"
+                    (change)="onSpecialityChange(speciality, $event)"
+                    [checked]="specialitySelected.includes(speciality)"
+                  />
+                    {{ speciality }}
+                  </div>
+                </div>
+              </div>
+
+                <div class="contenedor-especialistas">
+                    <h4 class="titulo-contenedor">Especialistas</h4>
+                    <div class="scrollable-container">        
+                    <div *ngFor="let specialist of filteredSpecialists">
+                      <input
+                      type="checkbox"
+                      [value]="specialist"
+                      (change)="onSpecialistChange(specialist, $event)"
+                      [checked]="specialistSelected.includes(specialist)"
+                    />
+                    {{ specialist.name }} {{ specialist.surname }}
+                    </div>
+                    </div>
+                </div>
+              
+            </div>
+          </div>
+  
+          <div class="lista col-md-8">
+
+            <div class="encabezados-lista">
+              <div class="titulo-lista">Fecha</div>
+              <div class="titulo-lista">Hora</div>
+              <div class="titulo-lista">Especialidad</div>
+              <div class="titulo-lista">Especialista</div>
+              <div class="titulo-lista">Paciente</div>
+              <div class="titulo-lista">Estado</div>
+              <div class="titulo-lista">Accion</div>
+            </div>
+         
+
+            <div class = "turnos">
+              <div *ngFor="let appt of appointments" class="item-lista">
+                <div class="dato-lista">{{ appt.fecha }}</div>
+                <div class="dato-lista">{{ appt.horario }}</div>
+                <div class="dato-lista">{{ appt.speciality }}</div>
+                <div class="dato-lista">{{ appt.nameSp }}</div>
+                <div class="dato-lista">{{ appt.namePat }}</div>     
+                <div class="dato-lista">{{ appt.estado }}</div>
+                <div class="dato-lista">
+                  <button *ngIf = "appt.estado == 'Pendiente'" class="botonAccion" (click)="updateAppointmentStatus(appt, 'cancelar')">Cancelar Turno</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

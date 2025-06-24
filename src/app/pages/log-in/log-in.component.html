@@ -13,41 +13,43 @@
                             <label for="pass" class="label">Contraseña</label>
                           <input [(ngModel)]="userPassword" name = "userPassword" type="password" class ="input" placeholder="**********">
                         </div>
-                        <!--<div class="group">
+                        
+                        <div class="group">
                             <div class="row" style="max-width: 99%; height: 50px;">
                                 <div class="col-sm-2" *ngFor="let patient of patients; let i = index">
                                     <button 
-                                        (click)="directAccess(patient.email, patient.pass)" 
+                                        (click)="directAccess(patient.email, patient.password)" 
                                         class="btn-img">
                                         <img 
-                                            [src]="paciente.fotoUno" 
+                                            [src]="patient.photo" 
                                             alt="Imagen de Paciente {{i + 1}}" 
                                             class="img-fluid rounded-circle">
                                     </button>
                                 </div>
-                                <div class="col-sm-2" *ngFor="let especialista of especialistas; let i = index">
+                                <div class="col-sm-2" *ngFor="let specialist of specialists; let i = index">
                                     <button 
-                                        (click)="rellenarCredenciales(especialista.email, especialista.pass)" 
+                                        (click)="directAccess(specialist.email, specialist.password)" 
                                         class="btn-img">
                                         <img 
-                                            [src]="especialista.fotoUno" 
+                                            [src]="specialist.photo" 
                                             alt="Imagen de Especialista {{i + 1}}" 
                                             class="img-fluid rounded-circle">
                                     </button>
                                 </div>
         
-                                <div class="col-sm-1" *ngFor="let admin of administradores; let i = index">
+                                <div class="col-sm-1" *ngFor="let admin of admins; let i = index">
                                     <button 
-                                        (click)="rellenarCredenciales(admin.email, admin.pass)" 
+                                        (click)="directAccess(admin.email, admin.password)" 
                                         class="btn-img">
                                         <img 
-                                            [src]="admin.fotoUno" 
+                                            [src]="admin.photo" 
                                             alt="Imagen de Especialista {{i + 1}}" 
                                             class="img-fluid rounded-circle">
                                     </button>
                                 </div>
                             </div>
-                        </div>-->
+                        </div>
+
                         <div class="group">
                         <p class="error-mensaje">{{errorMessage}}</p>
                             <!-- <input type="submit" class="button" (click)="Login"> -->

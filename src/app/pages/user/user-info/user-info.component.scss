@@ -1,8 +1,8 @@
 .usuarios-wrap{
     margin: auto;
-    /*background: url(/assets/MedicoFondo.jpg) no-repeat center;*/
-    background: #4faaff;
-    background: linear-gradient(234deg,rgba(79, 170, 255, 1) 0%, rgba(247, 202, 96, 1) 100%);
+    background: url(/assets/background.jpg) no-repeat center;
+    /*background: #4faaff;
+    background: linear-gradient(234deg,rgba(79, 170, 255, 1) 0%, rgba(247, 202, 96, 1) 100%);*/
     background-size: 100% 120%;
     box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19);
     position: fixed;
@@ -109,20 +109,20 @@ app-register {
 
 .button{
     text-transform:uppercase;
-    color: #000000;
+    color: #ffffff;
     padding: 15px 30px; /* Espaciado dentro de los botones */
     font-size: 18px; /* Tamaño de fuente del botón */
     margin-top: 20px;
     cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
     background: rgba(182, 190, 190, 0.753);
-    background-color: #ffffff;
+    background-color: #4faaff;
     border: none;
     border-radius: 10%;
     width: 80%;
 }
 
 .button:hover{
-    background-color: #00e67b;
+    background-color: #00509b;
 }
 
 .close-button{

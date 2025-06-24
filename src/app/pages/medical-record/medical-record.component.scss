@@ -1,0 +1,53 @@
+.historia-wrap {
+    margin: auto;
+    background: url(/assets/background.jpg) no-repeat center;
+    background-size: 100% 120%;
+    background-color: rgba(255, 255, 255, 0.5); 
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding-top: 90px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .historia-wrap::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .historia-clinica {
+    width: 100%;
+    max-width: 1000px;
+    height: 680px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 2; 
+    opacity: 0.95; 
+  }
+
+  .columna-alta {
+    height: 85px;
+  }
+
+  .columna-dinamicos {
+    height: 110px;
+  }
+
+  .boton{
+    background-color: aquamarine;
+    border-color: black;
+  }
+  
+  .boton:hover{
+    background-color: rgb(80, 176, 144);
+  }

@@ -1,0 +1,70 @@
+<div class="turnos-wrap">
+    <div class="turnos-html">
+      <h2 class="titulo">Mis Turnos</h2>
+  
+      <div class="tabla">
+        <div class="row" style="padding-left: 20px; gap: 20px;">
+          <div class="filtros col-md-4">
+            <div class="barra-titulo">Filtros</div>
+            <div class="contenido-filtros">
+              <div class="input-group mb-3 mt-3">
+                <input
+                [(ngModel)]="stringSearch"
+                type="text"
+                class="form-control"
+                placeholder="Busqueda"
+                aria-label="Recipient's username"
+                (input)="search()"
+              />
+              </div>
+            </div>
+          </div>
+  
+          <div class="lista col-md-8">
+
+            <div class="encabezados-lista">
+              <div class="titulo-lista">Fecha</div>
+              <div class="titulo-lista">Hora</div>
+              <div class="titulo-lista">Especialidad</div>
+              <div *ngIf = "userData.role == 'Especialista'" class="titulo-lista">Paciente</div>
+              <div *ngIf = "userData.role == 'Paciente'" class="titulo-lista">Especialista</div>
+              <div class="titulo-lista">Estado</div>
+              <div class="titulo-lista">Accion</div>
+            </div>
+
+            <div class = "turnos">
+              
+              <div *ngFor="let appt of filteredAppt" class="item-lista">
+                <div class="dato-lista">{{ appt.fecha }}</div>
+                <div class="dato-lista">{{ appt.horario }}</div>
+                <div class="dato-lista">{{ appt.speciality }}</div>
+                <div *ngIf = "userData.role == 'Especialista'" class="dato-lista">{{ appt.namePat }}</div>
+                <div *ngIf = "userData.role == 'Paciente'" class="dato-lista">{{ appt.nameSp }}</div>
+                <div class="dato-lista">{{ appt.estado }}</div>
+                <div class="dato-lista">
+  
+                  <ng-container *ngIf="userData.role === 'Especialista'">
+                    <button *ngIf = "appt.estado == 'Pendiente'" class="botonAccion" (click)="updateAppointmentStatus(appt, 'aceptar')">Aceptar Turno</button>
+                    <button *ngIf = "appt.estado == 'Pendiente'" class="botonAccion" (click)="updateAppointmentStatus(appt, 'cancelar')">Cancelar Turno</button>
+                    <button *ngIf = "appt.estado == 'Pendiente'" class="botonAccion" (click)="updateAppointmentStatus(appt, 'rechazar')">Rechazar Turno</button>
+                    <button *ngIf="appt.estado === 'Aceptado'" class="botonAccion" (click)="updateAppointmentStatus(appt, 'realizar')">Finalizar Turno</button>
+                    <button *ngIf="appt.hasComment" class="botonAccion" (click)="showComment(appt)">Ver reseña</button>
+                  </ng-container>
+  
+                  <ng-container *ngIf="userData.role === 'Paciente'">
+                    <button *ngIf = "appt.estado == 'Pendiente' || appt.estado == 'Aceptado'" class="botonAccion" (click)="updateAppointmentStatus(appt, 'cancelar')">Cancelar Turno</button>
+                    <button *ngIf="appt.hasComment" class="botonAccion" (click)="showComment(appt)">Ver reseña</button>
+                    <button *ngIf="appt.hasComment && appt.estado == 'Realizado'" class="botonAccion" style = "height: 60px;" (click)="completeSurvey(appt)">Completar Encuesta</button>
+                    <button *ngIf="appt.estado == 'Realizado'" class="botonAccion" (click)="actualizarCalificacionAtencion(appt)">Calificar Atencion</button>
+                  </ng-container>
+  
+                  
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
