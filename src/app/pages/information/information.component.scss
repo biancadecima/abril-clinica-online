@@ -1,0 +1,158 @@
+.informes-wrap {
+    margin: auto;
+    background: url(/assets/background.jpg) no-repeat center;
+    background-size: 100% 120%;
+    background-color: rgba(255, 255, 255, 0.5); /* Agregado: Color de fondo con transparencia */
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24), 0 17px 50px 0 rgba(0,0,0,.19);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    display: grid;
+    justify-content: center;
+}
+  
+.informes-wrap::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.informes-html{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+}
+
+.tabla{
+    height: 700px;
+    width: 1400px;
+    background-color: #ffffffa7;
+    display: flex;
+    max-width: 100%;
+}
+
+.containertitulo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+
+.titulo-contenedor {
+text-align: center;
+font-size: 30px;
+font-weight: bold;
+color: #007b83;
+padding-bottom: 10px;
+flex: 1;
+text-align: center;
+margin: 0;
+}
+
+.container{
+padding-top: 30px;
+}
+
+.cards-container {
+display: flex;
+flex-wrap: wrap;
+gap: 1rem;
+justify-content: center;
+margin-top: 1rem;
+}
+
+.card {
+background-color: #fff;
+border: 1px solid #ddd;
+border-radius: 8px;
+width: 400px;
+padding: 1rem;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+transform: scale(1.05);
+}
+
+.card-body {
+text-align: left;
+}
+
+.card-title {
+font-size: 1.25rem;
+font-weight: bold;
+margin-bottom: 0.5rem;
+}
+
+.card-text {
+font-size: 1rem;
+color: #555;
+}
+
+.nav-link.active {
+background-color: aquamarine !important;
+color: #005f41 !important; /* Cambia el color del texto si es necesario */
+}
+
+.nav-link{
+color: #000000 !important;
+}
+
+.containerBoton{
+justify-content: center;
+display: flex;
+}
+
+.botonDescarga{
+  text-transform: uppercase;
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 18px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: rgba(102,182,206,255);
+  border: none;
+  border-radius: 8px; /* Redondeo suave en las esquinas */
+  transition: background-color 0.3s ease; /* Suaviza la transición de color */
+}
+
+.filtros-fechas {
+display: flex;
+flex-direction: row;
+gap: 1rem;
+max-width: 300px; 
+margin: auto; 
+}
+
+.fecha-input-group {
+display: flex;
+flex-direction: column;
+}
+
+.fecha-label {
+font-weight: bold;
+margin-bottom: 0.5rem; 
+}
+
+.form-control {
+padding: 0.5rem;
+font-size: 1rem;
+}
+
+.logs-height, .especialidad-height, .dia-height {
+height: 540px;
+max-height: 540px;
+}
+
+.medico-height, .finalizadosMedico-height {
+height: 470px;
+max-height: 470px;
+}

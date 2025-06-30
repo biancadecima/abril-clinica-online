@@ -81,88 +81,29 @@
 .container{
     padding-top: 30px;
 }
-
-.foto-paciente {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+//////////////////////////
+.favbutton {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s, background-color 0.3s, box-shadow 0.3s;
+  border-radius: 8px;
 }
 
-.paciente-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    height: 400px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.favbutton:hover {
+  border-color: rgb(3, 109, 209);
+  box-shadow: 0 4px 12px rgba(3, 109, 209, 0.2);
+  background-color: rgba(3, 109, 209, 0.05);
 }
 
-.paciente-card.selected{
-    border-color: #3c8296; 
-    background-color: rgba(102,182,206,255); 
+.favbutton.active {
+  border-color: rgb(3, 109, 209);
+  background-color: rgba(3, 109, 209, 0.1);
 }
-
-.card-body-fecha{
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    cursor: pointer;
-}
-
+////////////////////////////////////
 .containerBoton{
     justify-content: center;
     display: flex;
 }
-
-.favbutton {
-    background: none;
-    border: none;
-    padding: 20px; 
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 200px; 
-    height: 200px; 
-  }
-  
-  .favbutton.active {
-    background-color: rgba(102,182,206,255);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
-  }
-  
-  .favbutton:hover {
-    background-color: #eaeaea;
-  }
-  
-  .paciente-img {
-    width: 120px; 
-    height: 120px; 
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border: 2px solid #ccc;
-    transition: border-color 0.3s ease;
-  }
-  
-  .favbutton.active {
-    border-color: #007bff;
-  }
-
-  .paciente-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border: 2px solid #ccc;
-    transition: border-color 0.3s ease;
-  }
 
   .columnas{
     align-items: center;

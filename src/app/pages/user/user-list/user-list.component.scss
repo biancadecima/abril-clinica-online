@@ -46,7 +46,7 @@
     cursor: pointer; 
     background: rgba(0, 166, 185, 0.1);
     background-color: rgb(3, 109, 209);
-    border-radius: 10%;
+    border-radius: 10px;
     height: 40px;
     border-color: black;
 }
@@ -77,7 +77,7 @@
 .favbutton.selected {
     background-color: #4faaff; 
     border-color: #00509b; 
-    color: #ffffff;
+    color: #000000;
     }
 
 

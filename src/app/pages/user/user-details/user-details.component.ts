@@ -3,22 +3,23 @@ import { Component, Input } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { MedicalRecordService } from '../../../services/medical-record.service';
 import { Router } from '@angular/router';
-/*import { VerificationPipe } from '../../../pipes/verification.pipe';
-import { TolowercasePipe } from '../../../pipes/tolowercase.pipe';
-import { FormatodniPipe } from '../../../pipes/formatodni.pipe';
-import { jsPDF } from 'jspdf';*/
+import { BooleanPipe } from '../../../pipes/boolean.pipe';
+import { DniFormatPipe } from '../../../pipes/dni-format.pipe';
+import { AppointmentService } from '../../../services/appointment.service';
+import * as XLSX from 'xlsx';
+//import { jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BooleanPipe, DniFormatPipe],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.scss'
 })
 export class UserDetailsComponent {
   @Input() user: any;
 
-  constructor(private userService : UserService, private medicalRecordService: MedicalRecordService, private router: Router){}
+  constructor(private userService : UserService, private medicalRecordService: MedicalRecordService, private router: Router, private appointmentService: AppointmentService){}
 
   ngOnInit() : void{}
 
@@ -37,6 +38,30 @@ export class UserDetailsComponent {
   showMedicalRecord(){
     this.medicalRecordService.emailPatient = this.user.email;
     this.router.navigateByUrl('/mostrar-historial');
+  }
+
+  async downloadExcel(): Promise<void> { //
+    try{
+      const appointments = await this.appointmentService.getPatientAppointments(this.user.email);
+       const data = appointments.map(appt => ({
+        Fecha: appt.fecha,
+        Horario: appt.horario,
+        Nombre: appt.namePat,
+        Email: appt.emailPat,
+        Especialista: appt.nameSp,
+        Especialidad: appt.speciality,
+        Estado: appt.estado,
+        Comentario: appt.comment || '',
+      }));
+    
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Turnos');
+      XLSX.writeFile(wb, 'turnos_realizados_paciente.xlsx');
+    
+    }catch (error) {
+      console.error('Error al exportar los turnos:', error);
+    }
   }
 
   /*async downloadPDF() {

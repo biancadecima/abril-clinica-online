@@ -23,7 +23,7 @@
         <div class="columnas col-md-3 mb-4 text-center"
           *ngFor="let user of filteredUsers" (click)="selectUser(user)">
           <button class="favbutton" [ngClass]="{ 'selected': user === selectedUser }"
-            (click)="selectUser(user)"><!--[appHighlightUnverified]="getIsVerifiedEmail(user)"-->
+            (click)="selectUser(user)" [appHighlightUnverified]="getIsVerifiedEmail(user)">
             <img [src]="user.photo" alt="Foto del usuario" class="img-fluid rounded-circle usuario-img"/>
             <p class="usuario-email">{{ user.email }}</p>
           </button>

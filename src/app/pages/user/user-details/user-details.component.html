@@ -33,7 +33,7 @@
                     <h3>DNI:</h3>
                 </div>
                 <div class="col-md-6">
-                    <p>{{ user?.dni }}</p><!--| formatodni-->
+                    <p>{{ user?.dni | dniFormat}}</p>
                 </div>
             </div>
             <div class="row fila">
@@ -70,7 +70,7 @@
                             <h3>Verifico el Email:</h3>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ user?.isVerifiedEmail }}</p><!--| verification-->
+                            <p>{{ user?.isVerifiedEmail | boolean}}</p>
                         </div>
                     </div>
                     <div class="row fila">
@@ -78,7 +78,7 @@
                             <h3>Verificado por Admin:</h3>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ user?.isVerifiedAdmin}}</p><!--| verification-->
+                            <p>{{ user?.isVerifiedAdmin | boolean}}</p>
                         </div>
                     </div>
                     <div class="row fila">
@@ -108,7 +108,7 @@
                             <h3>Verifico el Email:</h3>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ user?.isVerifiedEmail}}</p><!--| verification-->
+                            <p>{{ user?.isVerifiedEmail | boolean}}</p>
                         </div>
                     </div>
                     <div class="row fila">
@@ -139,5 +139,5 @@
         </div>
     </div>
     <button *ngIf = "user?.role == 'Paciente'" class = "botonHistoriaClinica" (click)="showMedicalRecord()">Ver Historia Clinica</button>
-    <!--<button *ngIf = "user?.role == 'Paciente'" class = "botonHistoriaClinica" (click)="descargarPDF()">Descargar PDF Historia Clinica</button>-->
+    <button *ngIf = "user?.role == 'Paciente'" class = "botonHistoriaClinica" (click)="downloadExcel()">Descargar Excel con Turnos</button>
 </div>

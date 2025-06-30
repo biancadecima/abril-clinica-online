@@ -1,1 +1,120 @@
-<p>information works!</p>
+<div class="informes-wrap">
+    <div class="informes-html">
+        <div class="tabla">
+        <div class="container">
+            <div class = "containertitulo">
+            <h4 class="titulo-contenedor">Informes:</h4>
+            </div>
+
+            <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="tab-logs"
+                data-bs-toggle="pill" href="#pills-logs" role="tab" aria-controls="pills-logs"
+                aria-selected="true" (click)="changeTab('logs')">Logs</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="tab-turnosporespecialidad"
+                data-bs-toggle="pill" href="#pills-turnosporespecialidad" role="tab" aria-controls="pills-turnosporespecialidad"
+                aria-selected="false" (click)="changeTab('turnosPorEspecialidad')">Turnos por especialidad</a>
+            </li>
+            <li class="nav-item" role="presentation">
+            <a class="nav-link"  id="tab-turnospordia" data-bs-toggle="pill"
+                href="#pills-turnospordia" role="tab" aria-controls="pills-turnospordia" aria-selected="false" (click)="changeTab('turnosPorDia')">Turnos por día</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link"  id="tab-turnospormedico" data-bs-toggle="pill"
+                    href="#pills-turnospormedico" role="tab" aria-controls="pills-turnospormedico" aria-selected="false" (click)="changeTab('turnospormedico')">Turnos por medico</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link"  id="tab-turnosfinalizadospormedico" data-bs-toggle="pill"
+                    href="#pills-turnosfinalizadospormedico" role="tab" aria-controls="pills-turnosfinalizadospormedico" aria-selected="false" (click)="changeTab('turnosFinalizadosPorMedico')">Turnos finalizados por medico</a>
+            </li>
+            </ul>
+
+            <div *ngIf="tabSelected === 'turnospormedico' || tabSelected === 'turnosFinalizadosPorMedico'">
+            <div class="filtros-fechas">
+                <!-- Grupo de fecha de inicio -->
+                <div class="fecha-input-group">
+                <label for="fechaInicio" class="fecha-label">Fecha de Inicio:</label>
+                <input
+                    type="date"
+                    id="fechaInicio"
+                    [(ngModel)]="fechaInicio"
+                    class="form-control"
+                />
+                </div>
+
+                <div class="fecha-input-group">
+                <label for="fechaFin" class="fecha-label">Fecha de Fin:</label>
+                <input
+                    type="date"
+                    id="fechaFin"
+                    [(ngModel)]="fechaFin"
+                    class="form-control"
+                />
+                </div>
+            
+
+                <button
+                class="btn btn-primary mt-3"
+                (click)="filterAppointmentsBySpecialist()"
+                [disabled]="!fechaInicio || !fechaFin"
+                >
+                Filtrar
+                </button>
+            </div>
+            </div>
+
+            <div class ="containerDatos"   [ngClass]="{
+                'logs-height': tabSelected === 'logs',
+                'especialidad-height': tabSelected === 'turnosPorEspecialidad',
+                'dia-height': tabSelected === 'turnosPorDia',
+                'medico-height': tabSelected === 'turnospormedico',
+                'finalizadosMedico-height': tabSelected === 'turnosFinalizadosPorMedico'
+                }" style="overflow-y: auto; overflow-x: clip;">
+
+                <div class="tab-content" id="ex1-content">
+                    <div class="tab-pane fade show active" id="pills-logs" role="tabpanel" aria-labelledby="tab-logs">
+                        <div class="row" >
+                            <div class="cards-container">
+                                <div class="card" *ngFor="let log of logs">
+                                    <div class="card-body">
+                                    <p class="card-text">
+                                        Email: {{ log.email }}<br>
+                                        Fecha: {{ log.fecha | dateFormat }} <br>
+                                        Hora: {{ log.hora }}<br>               
+                                    </p>
+                                    </div>
+                                </div>
+                            </div>
+            
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-turnosporespecialidad" role="tabpanel" aria-labelledby="tab-turnosporespecialidad">
+                        <canvas id="turnosPorEspecialidadChart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="pills-turnospordia" role="tabpanel" aria-labelledby="tab-turnospordia">
+                        <canvas id="turnosPorDiaChart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="pills-turnospormedico" role="tabpanel" aria-labelledby="tab-turnospormedico">
+                        <canvas id="turnosPorMedicoChart"></canvas>
+                    </div>
+                    <div class="tab-pane fade" id="pills-turnosfinalizadospormedico" role="tabpanel" aria-labelledby="tab-turnosfinalizadospormedico">
+                        <canvas id="turnosFinalizadosPorMedicoChart"></canvas>
+                    </div>
+                    </div>
+
+            </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class = "containerBoton">
+        <button class="botonDescarga" (click)="exportPdf()">Exportar a PDF</button>
+    </div>
+
+
+</div>

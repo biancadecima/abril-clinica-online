@@ -1,134 +1,4 @@
-<!--<div class="perfil-wrap">
-    <div class="perfil-html" [class]="this.userData.role">
-      <div class="tarjeta-presentacion">
-        <div class="container">
-            <div class = "containertitulo">
-              <h4 class="titulo-contenedor">Mi Perfil</h4>
-              <img src="assets/logo.png" class="logo-derecha">
-            </div>
-
-            <div class = "containerdatos">
-              <div class="foto-usuario">
-                <ng-container *ngIf = "userData.role == 'Paciente'">
-                    <img src="{{userData.photo}}" alt="Foto de perfil" style = "width: 100px; height: 120px;">
-                    <img src="{{userData.photo2}}" alt="Foto de perfil" style = "width: 100px; height: 120px">
-                </ng-container>
-
-                <ng-container *ngIf = "userData.role == 'Especialista' || userData.role == 'Admin'">
-                  <img src="{{userData.photo}}" alt="Foto de perfil" style = "width: 200px; height: 220px">
-                </ng-container>
-                           
-              </div>
-              <div class="datos-usuario">
-                <h4 class="nombre">{{userData.name}} {{userData.surname}}</h4>
-                <p><strong>Edad:</strong> {{userData.age}}</p>
-                <p><strong>DNI:</strong> {{userData.dni}}</p>
-                <p><strong>Email:</strong> {{userData.email}}</p>
-
-                <p *ngIf = "userData.role == 'Paciente'">
-                  <strong>Obra Social:</strong> {{userData.insurance}}
-                </p>
-
-                <p *ngIf = "userData.role == 'Especialista'">
-                  <strong>Especialidades:</strong> {{userData.specialities}}
-                </p>
-              </div>               
-            </div>
-        </div>
-
-        <button *ngIf = "userData.role == 'Paciente'" class = "botonHistoriaClinica" (click)="showMedicalRecord()">Ver Historia Clinica</button>
-        <button *ngIf = "userData.role == 'Paciente'" class = "botonHistoriaClinica" (click)="descargarPDF()">Descargar PDF Historia Clinica</button>
-
-        <div *ngIf = "userData.role == 'Especialista'" class = "tarjeta-horarios">
-
-        <div class="container">
-          <div class = "container-titulo-horarios">
-            <h4 class="titulo-contenedor-horarios">Disponibilidad Horaria</h4>
-            <h4 class="titulo-contenedor-horarios" style="font-size: 20px;">Selecciona un Día</h4>
-          </div>
-
-          <div class="navegacion-semanal">
-            <button (click)="changeWeek('anterior')">⬅️</button>
-            <button (click)="changeWeek('siguiente')">➡️</button>
-          </div>
-
-          
-          <div class="dias-semana">
-            <button
-              *ngFor="let day of weekDays"
-              (click)="selectDay(getDateOfDay(day))"
-              [ngClass]="{'activo': getDateOfDay(day) === selectedDate}"
-            >
-            {{ day }} 
-            {{ getDateOfDay(day) }} 
-            </button>
-          </div>
-
-          <div class = "botonGuardar">
-            <button class = "guardarHorarios" (click)="saveSchedule()">Guardar Disponibilidad</button>
-          </div>
-          
-
-          <div class = "cards">
-
-              <div *ngFor="let speciality of userData.specialities" class="card-especialidad">
-                <h6 class="titulo-especialidad">{{ speciality }}</h6>
-              
-                <div *ngIf="schedule[selectedDate]?.horarios?.[speciality]"  class="horario">
-                  <div class="input-group">
-                    <label>Inicio:</label>
-                    <input
-                      type="time"
-                      class="input-horario"
-                      [value]="schedule[selectedDate].horarios[speciality].inicio || ''"
-                      (input)="onScheduleChange($event, 'inicio', speciality)"
-                    />
-
-
-                  </div>
-              
-                  <div class="input-group">
-                    <label>Fin:</label>
-                    <input
-                      type="time"
-                      class="input-horario"
-                      [value]="schedule[selectedDate].horarios[speciality].fin || ''"
-                      (input)="onScheduleChange($event, 'fin', speciality)"
-                    />
-                  </div>
-
-                  <div class="input-group" style="display: flex; flex-direction: row">
-                    <label>Intervalo:</label>
-                    <input
-                      type="number"
-                      min="5"
-                      step="5"
-                      class="input-horario"
-                      style="width: 50px;"
-                      [value]="schedule[selectedDate].horarios[speciality].intervalo || ''"
-                      (input)="onIntervaloChange($event, speciality)"
-                    />
-                    <label style="padding-top: 8px; padding-left: 2px;">min</label>
-                  </div>
-                </div>
-
-
-              </div>
-
-          </div>
-
-          <p class="error-mensaje" style="height: 25px;">{{msjError}}</p>
-      
-
-        </div>
-          
-      </div>
-
-    </div>
-</div>-->     
-
-
-
+    
 <div class="perfil-wrap">
     <div class="perfil-html" [class]="this.userData.role">
       <div class="tarjeta-presentacion">
@@ -168,8 +38,28 @@
         </div>
       </div>
 
-      <button *ngIf = "userData.role == 'Paciente'" class = "botonHistoriaClinica" (click)="showMedicalRecord()">Ver Historia Clinica</button>
-      <button *ngIf = "userData.role == 'Paciente'" class = "botonHistoriaClinica" (click)="downloadPDF()">Descargar PDF Historia Clinica</button>
+      <ng-container *ngIf = "userData.role == 'Paciente'">
+        <button class = "botonHistoriaClinica" (click)="showMedicalRecord()">Ver Historia Clinica</button>
+        <h4><strong>Seleccione una especialidad para descargar la historia clínica:</strong></h4>
+         <!-- Combo de especialidades -->
+          <div class="form-group">
+            <select
+              id="specialitySelect"
+              class="form-control"
+              [(ngModel)]="selectedSpeciality">
+              <option value="" disabled selected>-- Seleccionar --</option>
+              <option *ngFor="let speciality of specialities" [value]="speciality">
+                {{ speciality }}
+              </option>
+            </select>
+          </div>
+
+          <button class="botonHistoriaClinica" [disabled]="!selectedSpeciality" (click)="downloadPDF(selectedSpeciality)">
+            Descargar PDF Historia Clínica
+          </button>
+      </ng-container>
+
+      
 
       <div *ngIf = "userData.role == 'Especialista'" class = "tarjeta-horarios">
 

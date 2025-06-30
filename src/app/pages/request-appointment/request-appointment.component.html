@@ -19,7 +19,7 @@
                 <div *ngFor="let speciality of specialities" class="col-md-6 mb-4">
                     <div class="card especialidad-card text-center"
                     [class.selected]="speciality === selectedSpeciality"
-                    (click)="onSpecialityChange(speciality)">
+                    (click)="onSpecialityChange(speciality)" appHoverZoom>
                     <img 
                     [src]="getSpecialityPhoto(speciality)" 
                     alt="Foto de la especialidad" 
@@ -44,7 +44,7 @@
                 <div *ngFor="let specialist of filteredSpecialists" class="col-md-4 mb-4">
                   <div class="card especialista-card text-center"  
                   [class.selected]="specialist === selectedSpecialist"
-                  (click)="onSpecialistChange(specialist)" ><!--bueno acá habia una directiva-->
+                  (click)="onSpecialistChange(specialist)" appHoverZoom >
                   <h5 class="card-title">{{ specialist.name }} {{ specialist.surname }}</h5>  
                   <img [src]="specialist.photo" alt="Foto del especialista" class="card-img-top foto-especialista">
                     <div class="card-body">
@@ -70,7 +70,7 @@
                   <div *ngFor="let horario of item.horariosDisponibles" class="col-md-4 mb-3" style="display: flex; justify-content: center; align-items: center;">
                     <div class="card horario-card text-center"
                         [class.selected]="selectedDate === item.fecha && selectedSchedule === horario"
-                        (click)="onScheduleChange(item.fecha, horario)">
+                        (click)="onScheduleChange(item.fecha, horario)" appHoverZoom>
                       <div class="card-body-horario">
                         <input type="radio"
                               name="fechaHorario"
@@ -128,7 +128,7 @@
                 <div *ngFor="let patient of patientList" class="col-md-4 mb-4">
                   <div class="card paciente-card text-center"  
                   [class.selected]="patient === selectedPatient"
-                  (click)="onPatientChange(patient)">
+                  (click)="onPatientChange(patient)" appHoverZoom>
                     <img [src]="patient.photo" alt="Foto del paciente" class="card-img-top foto-paciente">
                     <div class="card-body">
                       <h5 class="card-title">{{ patient.name }} {{ patient.surname }}</h5>

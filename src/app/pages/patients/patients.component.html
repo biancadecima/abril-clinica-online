@@ -5,25 +5,28 @@
         <div class="containertitulo">
           <h4 class="titulo-contenedor">Pacientes:</h4>
         </div>
-        <div class="row justify-content-center" style="overflow-y: auto; max-height: 600px;">
-          <div *ngFor="let patient of patients" class="columnas col-md-4 mb-4 text-center">
 
+        <div class="row">
+          <div
+            *ngFor="let patient of patients"
+            class="col-md-4 mb-4"
+          >
             <button
-              class="favbutton"
+              class="favbutton card w-100 p-3"
               [class.active]="patient === selectedPatient"
               (click)="onPatientChange(patient)"
             >
-        
-              <img
-                [src]="patient.photo"
-                alt="Foto del paciente"
-                class="img-fluid rounded-circle paciente-img"
-              />
-          
-              <h5 class="paciente-nombre">{{ patient.name }} {{ patient.surname }}</h5>
+              <h5 class="card-title text-center">{{ patient.name }} {{ patient.surname }}</h5>
+              <p class="text-center mb-2"><strong>Fecha de los últimos turnos:</strong></p>
+              <ul class="list-unstyled text-center">
+                <li *ngFor="let appt of patientAppointments[patient.email]">
+                  {{ appt.speciality }}: {{ appt.fecha }} {{ appt.horario }}
+                </li>
+              </ul>
             </button>
           </div>
         </div>
+      
       </div>
     </div>
   </div>
@@ -32,7 +35,7 @@
     <button
       class="botonHistoriaClinica"
       (click)="showMedicalRecord()"
-    ><!--[appDisableIfEmpty]="pacientes"-->
+      [appDisableIfEmpty]="patients">
       Ver Historia Clinica
     </button>
   </div>

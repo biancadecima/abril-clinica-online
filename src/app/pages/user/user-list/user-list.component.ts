@@ -3,13 +3,13 @@ import { UserService } from '../../../services/user.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { User } from '../../../interfaces/user';
-/*import * as XLSX from 'xlsx';
-import { HighlightUnverifiedDirective } from '../../../directivas/highlight-unverified.directive';*/
+/*import * as XLSX from 'xlsx';*/
+import { HighlightUnverifiedDirective } from '../../../directives/highlight-unverified.directive';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HighlightUnverifiedDirective],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })

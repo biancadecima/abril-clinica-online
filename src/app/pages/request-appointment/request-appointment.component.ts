@@ -6,12 +6,12 @@ import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2'
 import { AppointmentService } from '../../services/appointment.service';
 import { SpinnerService } from '../../services/spinner.service';
-/*import { HoverZoomDirective } from '../../directivas/hover-zoom.directive';*/
+import { HoverZoomDirective } from '../../directives/hover-zoom.directive';
 
 @Component({
   selector: 'app-request-appointment',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HoverZoomDirective],
   templateUrl: './request-appointment.component.html',
   styleUrl: './request-appointment.component.scss'
 })

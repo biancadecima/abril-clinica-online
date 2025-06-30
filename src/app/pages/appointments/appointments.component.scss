@@ -56,7 +56,6 @@
   .tabla{
     height: 700px;
     width: 1400px;
-    border-style: solid;
     background-color: #ffffffa7;
     align-items: center;
     display: flex;
@@ -92,6 +91,7 @@
 
   .filtros{
     border-style: solid;
+    border-color: #fff;
     height: 650px;
     width: 300px;
     padding: 0;
@@ -99,6 +99,7 @@
 
   .lista{
     border-style: solid;
+    border-color: #fff;
     height: 650px;
     width: 1055px;
     padding: 0;
@@ -130,7 +131,6 @@
     max-height: 150px;  
     overflow-y: auto;   
     background-color: #ffffff96;
-    border-style: solid;
     width: 200px;
     text-align: left;
     padding-left: 10px;
@@ -165,10 +165,9 @@
   .botonAccion{
     height: 30px;
     background-color: rgba(102,182,206,255);
-    border-style: solid;
-    border-radius: 5px;
+    //border-radius: 5px;
     width: 130px;
-
+    color: #fff;
   }
 
   

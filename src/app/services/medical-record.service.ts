@@ -48,6 +48,46 @@ export class MedicalRecordService {
     return records;
   }
 
+  async getMedicalRecordBySpeciality(speciality: string): Promise<any[]> {
+    const records: any[] = [];
+    try {
+      const col = collection(this.firestore, 'medicalrecord');
+      const recordQuery = query(col, 
+        where('emailPatient', '==', this.emailPatient), 
+        where('speciality', '==', speciality));
+      const querySnapshot = await getDocs(recordQuery);
+
+      if (!querySnapshot.empty) {
+        records.push(...querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      } else {
+        console.log('No se encontraron historias clínicas para los criterios especificados.');
+      }
+    } catch (error) {
+      console.error('Error al obtener la historia clínica:', error);
+      throw error;
+    }
+    return records;
+  }
+
+  /*async getMedicalRecordBySpeciality(speciality: string): Promise<any> {
+    try {
+      const medicalRecordRef = collection(this.firestore, 'medicalrecord');     
+      const q = query(medicalRecordRef,  
+        where('emailPatient', '==', this.emailPatient), 
+        where('speciality', '==', speciality));
+      const querySnapshot = await getDocs(q);
+  
+      if (!querySnapshot.empty) {
+        return querySnapshot.docs[0].data();
+      }
+  
+      return null;
+    } catch (error) {
+      console.error('Error al obtener la historia clínica:', error);
+      return null;
+    }
+  }*/
+
   async getMedicalRecordByAppt(idAppointment: string): Promise<any> {
     try {
       

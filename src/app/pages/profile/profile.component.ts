@@ -27,11 +27,14 @@ export class ProfileComponent {
   msjError : string = "";
   apptsAvailable: { [fecha: string]: string[] } = {};
   weekOffset: number = 0;
+  specialities: string[] = [];
+  selectedSpeciality: string = '';
 
   constructor(private authService: AuthService, private userService: UserService, private medicalRecordService: MedicalRecordService, private router: Router){}
 
   async ngOnInit() {
     this.userData = this.authService.getUserData();
+    this.loadSpecialities();
     console.log(this.userData.specialities);
  
     if(this.userData.role == "Especialista")
@@ -71,6 +74,18 @@ export class ProfileComponent {
     this.selectedDay = this.weekDays[0];
     this.selectedDate = this.getDateOfDay(this.selectedDay);
   }
+
+  loadSpecialities(){
+     this.userService.getSpecialities().then(data => {
+      this.specialities = data;
+    });
+  }
+
+  /*onSpecialityChange(speciality: string) {
+    this.selectedSpeciality = speciality;
+  }*/
+
+  
 
   selectDay(date: string) {
     this.selectedDate = date;
@@ -300,27 +315,20 @@ export class ProfileComponent {
     for (let i = 0; i < 15; i++) {
       const actualDate = new Date(today);
       actualDate.setDate(today.getDate() + i);
-  
       const weekDay = actualDate.toLocaleDateString('es-ES', { weekday: 'long' }).toLowerCase();
       const dayFormat = weekDay.charAt(0).toUpperCase() + weekDay.slice(1);
       const dayMonth = actualDate.getDate().toString().padStart(2, '0');
       const month = (actualDate.getMonth() + 1).toString().padStart(2, '0');
       const year = actualDate.getFullYear();
       const completeDate = `${dayMonth}/${month}`;
-  
- 
       const schedulesDay = this.schedule[completeDate]?.horarios || {}; //los horarios de una especialidad en un dia
-  
    
       for (const speciality in schedulesDay) {
         const horarioActual = schedulesDay[speciality];
-  
-     
         if (!this.verificarHorariosPorEspecialidad(horarioActual, speciality)) {
           return false;
         }
       }
-  
     
       if (!this.verificarConflictosEntreEspecialidades(schedulesDay)) {
         return false;
@@ -333,14 +341,12 @@ export class ProfileComponent {
   onIntervaloChange(event: any, speciality: string) {
     const intervalo = parseInt(event.target.value, 10);
     const date = this.selectedDate;
-  
     
     if (isNaN(intervalo) || intervalo <= 0) {
       this.msjErrorAux = `Error: Debes ingresar un intervalo válido para la especialidad ${speciality}.`;
       return;
     }
   
-   
     if (date) {
       if (!this.schedule[date]) {
         this.schedule[date] = { dia: '', horarios: {} };
@@ -350,7 +356,6 @@ export class ProfileComponent {
         this.schedule[date].horarios[speciality] = { inicio: '', fin: '', intervalo: 0 };
       }
   
-      
       this.schedule[date].horarios[speciality].intervalo = intervalo;
     }
   }
@@ -360,11 +365,11 @@ export class ProfileComponent {
     this.router.navigateByUrl('/mostrar-historial');
   }
 
-  async downloadPDF() {
+  async downloadPDF(speciality: string) {
     try {
       this.medicalRecordService.emailPatient = this.userData.email;
-  
-      const historias: Array<{ [key: string]: any }> = await this.medicalRecordService.getMedicalRecord();
+      const historias: Array<{ [key: string]: any }> = await this.medicalRecordService.getMedicalRecordBySpeciality(speciality);
+      
   
       const historiasProcesadas = historias.map(historia => {
         const clavesFijas = [

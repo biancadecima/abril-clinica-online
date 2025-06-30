@@ -17,13 +17,15 @@ import { trigger, transition, style, animate } from '@angular/animations';
   styleUrl: './log-in.component.scss',
   animations: [
     trigger('fadeAnimation', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(-2330px)' }), // Comienza fuera de la pantalla, más arriba
-        animate('600ms cubic-bezier(0.5, 0.8, 0.5, 1)', style({ opacity: 1, transform: 'translateY(520px)' })),
-      ]),
-      transition(':leave', [
-        animate('300ms ease-in', style({ opacity: 0, transform: 'translateY(200px)' })), // Se desliza hacia abajo al salir
-      ]),
+    // Animación de entrada: desde abajo hacia su posición original
+    transition(':enter', [
+      style({ opacity: 0, transform: 'translateY(100vh)' }), // Empieza desde abajo (fuera de pantalla)
+      animate('600ms cubic-bezier(0.5, 0.8, 0.5, 1)', style({ opacity: 1, transform: 'translateY(520px)' })),
+    ]),
+    // Animación de salida: hacia abajo
+    transition(':leave', [
+      animate('300ms ease-in', style({ opacity: 0, transform: 'translateY(100px)' })),
+    ]),
     ]),
   ],
 })

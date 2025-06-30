@@ -38,6 +38,49 @@ export class AppointmentService {
     };
   }
 
+  async getAppointments(): Promise<any[]> {
+    const appointments: any[] = [];
+    try {
+      const col = collection(this.firestore, 'appointments');
+      const querySnapshot = await getDocs(col);
+    
+      if (!querySnapshot.empty) {
+        appointments.push(...querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      } else {
+        console.log('No se encontraron turnos.');
+      }
+    } catch (error) {
+      console.error('Error al obtener los turnos:', error);
+      throw error;
+    }
+    return appointments;
+  }
+
+  async getPatientAppointments(emailPat: string): Promise<any[]> {
+    try {
+      const appointmentsRef = collection(this.firestore, 'appointments');
+      const q = query(
+        appointmentsRef,
+        where('emailPat', '==', emailPat),
+        where('estado', '==', 'Realizado')
+      );
+
+      const snapshot = await getDocs(q);
+
+      if (snapshot.empty) {
+        console.log(`No se encontraron turnos realizados para ${emailPat}`);
+        return [];
+      }
+
+      const appointments = snapshot.docs.map(doc => doc.data());
+      return appointments;
+
+    } catch (error) {
+      console.error('Error al obtener los turnos realizados del paciente:', error);
+      throw error;
+    }
+  }
+
   async getUserAppointments(email: string, completeName: string, role: string): Promise<any[]> {
     const appointments: any[] = [];
 
@@ -65,6 +108,45 @@ export class AppointmentService {
     }
     return appointments;
   }
+
+  async getFinishedAppointmentsOfPatient(emailSp: string, emailPat: string): Promise<any[]> {
+    //console.log("getFinishedAppointment emailsp: "+emailSp);
+    //console.log("getFinishedAppointment emailPat: "+emailPat);
+    try {
+      const apptCollectionRef = collection(this.firestore, 'appointments');
+      const apptsQuery = query(
+        apptCollectionRef,
+        where('emailSp', '==', emailSp),
+        where('emailPat', '==', emailPat),
+        where('estado', '==', "Realizado"),
+      );
+
+      const querySnapshot = await getDocs(apptsQuery);
+
+      if (querySnapshot.empty) {
+        return [];
+      }
+
+      const appointments = querySnapshot.docs
+        .map(doc => {
+          const data = doc.data();
+          return {
+            ...data,
+            parsedDate: this.parseDateString(data['fecha'])
+          };
+        })
+        .sort((a, b) => b.parsedDate.getTime() - a.parsedDate.getTime());
+        //.slice(0, 3); // Últimos 3 turnos
+
+        console.log("getFinishedAppointmentsOfPatient: "+appointments);
+
+      return appointments;
+    } catch (error) {
+      console.error('Error al obtener turnos del paciente:', error);
+      throw error;
+    }
+  }
+
 
   async updateAppointmentStatus(id: string, nuevoEstado: string, comentario: string): Promise<void> {
     try {
@@ -176,5 +258,11 @@ export class AppointmentService {
     const querySnapshot = await getDocs(turnoQuery);
     return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
   }
+
+  parseDateString(dateStr: string): Date {
+  const [day, month] = dateStr.split('/').map(Number);
+  const currentYear = new Date().getFullYear();
+  return new Date(currentYear, month - 1, day);
+}
 
 }
